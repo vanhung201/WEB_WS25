@@ -1,0 +1,276 @@
+-- phpMyAdmin SQL Dump
+-- version 5.1.0
+-- https://www.phpmyadmin.net/
+--
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th5 28, 2021 lúc 09:32 AM
+-- Phiên bản máy phục vụ: 10.4.18-MariaDB
+-- Phiên bản PHP: 8.0.3
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Cơ sở dữ liệu: `nsmykfrvhosting_ws25`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `admin_account`
+--
+
+CREATE TABLE `admin_account` (
+  `UserName` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `PassWord` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `admin_account`
+--
+
+INSERT INTO `admin_account` (`UserName`, `PassWord`) VALUES
+('vanhung201', '123456'),
+('chithanh', '123456'),
+('longluu', '123456'),
+('thanhan', '123456'),
+('donduong', '123456'),
+('admin', 'admin');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `customer`
+--
+
+CREATE TABLE `customer` (
+  `UserName` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `PassWord` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Email` varchar(60) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Name` varchar(70) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Gender` varchar(3) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `PhoneNumber` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `DateOfBirth` date DEFAULT NULL,
+  `Address` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `customer`
+--
+
+INSERT INTO `customer` (`UserName`, `PassWord`, `Email`, `Name`, `Gender`, `PhoneNumber`, `DateOfBirth`, `Address`) VALUES
+('vanhung201', '123456', 'hungsky15@gmail.com', 'Lê Văn Hùng', 'Nam', '0355012525', '2001-03-20', '566/169 Nguyễn Thái Sơn, Phường 5, Quận Gò Vấp, Tp. Hồ Chí Minh');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `detail_order`
+--
+
+CREATE TABLE `detail_order` (
+  `IDDetailOrder` int(11) NOT NULL,
+  `IDOrderProduct` int(11) DEFAULT NULL,
+  `IDProduct` int(11) NOT NULL,
+  `TotalProduct` int(11) DEFAULT NULL,
+  `Amount` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Discount` int(11) DEFAULT NULL,
+  `TotalAmount` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `manufacturer`
+--
+
+CREATE TABLE `manufacturer` (
+  `IDManufacturer` int(11) NOT NULL,
+  `Name` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Origin` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `manufacturer`
+--
+
+INSERT INTO `manufacturer` (`IDManufacturer`, `Name`, `Origin`) VALUES
+(1, 'Casio', NULL),
+(2, 'Daniel Wellington', NULL),
+(3, 'Doxa', NULL),
+(4, 'Longines', NULL),
+(5, 'Orient', NULL),
+(6, 'Tissot', NULL),
+(7, 'Fossil', NULL),
+(8, 'Asio', NULL),
+(9, 'Skagen', NULL),
+(10, 'Movado', NULL),
+(11, 'Calvin Klein', NULL),
+(12, 'Ogival', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `order_product`
+--
+
+CREATE TABLE `order_product` (
+  `IDOrderProduct` int(11) NOT NULL,
+  `UserName` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Status` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `StartDate` date DEFAULT NULL,
+  `UpdateDate` date DEFAULT NULL,
+  `NoteOrder` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `product`
+--
+
+CREATE TABLE `product` (
+  `IDProduct` int(11) NOT NULL,
+  `Name` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `IDTypeProduct` int(11) DEFAULT NULL,
+  `Detail` varchar(10000) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Inventory` int(11) DEFAULT NULL,
+  `Amount` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `IDManufacturer` int(11) DEFAULT NULL,
+  `Img` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `product`
+--
+
+INSERT INTO `product` (`IDProduct`, `Name`, `IDTypeProduct`, `Detail`, `Inventory`, `Amount`, `IDManufacturer`, `Img`) VALUES
+(1, 'Casio AE-1200WHD-1AVDF – Nam – Kính Nhựa – Quartz (Pin) – Dây Kim Loại', 0, 'Đồng hồ nam Casio AE1200WHD có mặt đồng hồ vuông to với phong cách thể thao, mặt số điện tử với những tính năng hiện đại tiện dụng, kết hợp với dây đeo bằng kim loại đem lại vẻ mạnh mẽ cá tính dành cho phái nam.', 10, '1246000', 1, 'SanPham1.png'),
+(2, 'G-Shock GA-400-1BDR – Nam – Quartz (Pin) – Dây Cao Su', 0, 'Đồng hồ G-Shock GA-400-1BDR với thiết kế mặt số lớn phong cách thể thao nam tính mạnh mẽ, mặt số thiết kế đa chiều nổi bật, cùng nút vặn độc đáo để tùy chỉnh chế độ trong chiếc đồng hồ.', 10, '4230000', 1, 'SanPham2.png'),
+(3, 'Daniel Wellington DW00100148 – Nam – Quartz (Pin) – Dây Vải – Mặt Số 40mm', 0, 'Đồng hồ nam Daniel Wellington DW00100148 với thiết kế giản dị, vỏ máy bằng thép không gỉ màu đồng, kim chỉ cùng vạch số được làm mỏng tinh tế sang trọng, phối cùng dây vải màu đen tạo nên vẻ trẻ trung thời trang cho phái mạnh.', 15, '4600000', 2, 'SanPham3.png'),
+(4, 'Casio AE-1200WHD-1AVDF – Nam – Kính Nhựa – Quartz (Pin) – Dây Kim Loại', 0, 'Đồng hồ nam Casio AE1200WHD có mặt đồng hồ vuông to với phong cách thể thao, mặt số điện tử với những tính năng hiện đại tiện dụng, kết hợp với dây đeo bằng kim loại đem lại vẻ mạnh mẽ cá tính dành cho phái nam.', 6, '7140000', 1, 'SanPham4.png'),
+(5, 'Doxa D173TCM – Nam – Kính Sapphire – Automatic (Tự Động) – Dây Kim Loại', 0, 'Mẫu Doxa nam D173TCM khoác lên phong cách đẳng cấp khi mặt số với thiết kế tinh xảo đính kèm các viên kim cương nổi bật trên nền kính Sapphire thời trang sang trọng phối cùng mẫu dây đeo demi.', 7, '36940000', 3, 'SanPham5.png'),
+(6, 'LONGINES L4.759.4.11.2 – NAM – KÍNH SAPPHIRE – QUARTZ (PIN) – DÂY DA', 0, 'Dây đeo đồng hồ Longines L4.759.4.11.2 bằng da vân thanh lịch, mặt số tròn size 35mm kiểu dáng 3 kim cùng cọc số la mã tạo nét mỏng thời trang.', 16, '20900000', 4, 'SanPham6.png'),
+(7, 'Orient SUND6002W0 – Nam – Quartz (Pin) – Dây Kim Loại', 0, 'Mẫu Orient SUND6002W0 vẻ ngoài sang trọng với các chi tiết vạch số mỏng cho đến núm vặn điểu chỉnh đều được mạ vàng nổi bật dành cho phái mạnh.', 9, '2810000', 5, 'SanPham7.png'),
+(8, 'Tissot T006.407.36.263.00 – Nam – Kính Sapphire – Automatic (Tự Động) – Dây Da', 0, 'Mẫu Tissot T006.407.36.263.00 nổi bật với phần vỏ máy được mạ vàng khoác lên sự sang trọng dành cho phái mạnh, với trải nghiệm bộ máy cơ tạo nên vẻ đặc trưng nam tính kết hợp cùng bộ dây đeo bằng da đầy lịch lãm.', 20, '18830000', 6, 'SanPham8.png'),
+(10, 'FOSSIL ES4431 – NỮ – QUARTZ (PIN) – DÂY KIM LOẠI', 1, 'Mẫu đồng hồ Fossil ES4431 với thiết kế chi tiết kim chỉ được được tạo hình thanh mảnh nhẹ nhàng đầy nữ tính, kết hợp cùng dây đeo demi vàng hồng tạo nên vẻ thời trang cho phái đẹp.', 4, '1246000', 7, 'SanPham10.png'),
+(11, 'FOSSIL ES4298 – NỮ – QUARTZ (PIN) – DÂY KIM LOẠI', 1, 'Mẫu đồng hồ ES4298 luôn mang đến cho phái đẹp một vẻ ngoài trẻ trung đến từ thương hiệu Fossil nổi bật với phần gia công tinh xảo tỉ mỉ đính kèm các viên pha lê trên đồng hồ tạo nên vẻ kiêu sa lộng lẫy.', 13, '4230000', 7, 'SanPham11.png'),
+(12, 'FOSSIL ES4437 – NỮ – QUARTZ (PIN) – DÂY KIM LOẠI', 1, 'Vẻ ngoài quý phái được ẩn mình của mẫu đồng hồ thời trang Fossil ES4437 với thiết kế ô số kim giây được đính kèm các viên pha lê xung quanh tạo nên vẻ đẹp kiêu sa đầy sang trọng dành cho phái đẹp.', 20, '46000000', 7, 'SanPham12.png'),
+(13, 'ASIO B640WDG-7DF – NỮ – KÍNH NHỰA – QUARTZ (PIN) – DÂY KIM LOẠI – MẶT SỐ 35MM', 1, 'Mẫu Casio B640WDG-7DF mặt số vuông điện tử hiện thị đa chức năng kiểu dáng năng động phối cùng mẫu dây đeo kim loại mạ bạc.', 13, '7140000', 8, 'SanPham13.png'),
+(14, 'SKAGEN SKW2839 – NỮ – QUARTZ (PIN) – DÂY DA – MẶT SỐ 30MM', 1, 'Mẫu Skagen SKW2839 dây da phiên bản dây da trơn phối tone màu kem thời trang cho phái đẹp cùng với thiết kế tối giản chức năng 2 kim trên nền mặt số size 30mm.', 18, '2340000', 9, 'SanPham14.png'),
+(15, 'SKAGEN SKW2906 – NỮ – QUARTZ (PIN) – DÂY DA – MẶT SỐ 30MM', 1, 'Mẫu Skagen SKW2906 dây da phiên bản da trơn họa tiết đa màu sắc kết hợp cùng nền mặt số size 30mm tone màu xanh xà cừ thời trang nổi bật cho phái đẹp.', 3, '20900000', 9, 'SanPham15.png'),
+(16, 'MOVADO 3600435 – NỮ – QUARTZ (PIN) – DÂY KIM LOẠI', 1, 'Mẫu 3600435 thiết kế sang trọng với sự kết hợp giữa vỏ máy cùng dây đeo bằng kim loại màu vàng hồng sang trọng, đồng hồ với thiết kế 2 kim đặc trưng đến từ hãng Movado.', 8, '28100000', 10, 'SanPham16.png'),
+(17, 'CALVIN KLEIN K8M21421 – NAM – QUARTZ (PIN) – DÂY KIM LOẠI', 0, 'Mẫu Calvin Klein K8M21421 phiên bản chi tiết kim chỉ vạch số vàng hồng thời trang nổi bật trên mặt số tone nền đen cá tính với kích thước mặt 40mm.', 36, '7830000', 11, 'SanPham17.png'),
+(18, 'CALVIN KLEIN K8M214CB – NAM – QUARTZ (PIN) – DÂY DA', 0, 'Mẫu đồng hồ nam Calvin Klein mặt số tone nền đen kích thước 40mm kiểu dáng giản dị 3 kim cùng chi tiết vạch số tạo nét mỏng mạ vàng hồng thời trang.', 13, '7200000', 11, 'SanPham18.png'),
+(19, 'OGIVAL 358-351AG42R-GL-V – NAM – KÍNH SAPPHIRE – AUTOMATIC (TỰ ĐỘNG) – DÂY DA – MẶT SỐ 40MM', 0, 'Mẫu Ogival 358-351AG42R-GL-V phiên bản kim chỉ xanh cùng với nền cọc số la mã tạo hình mỏng cách tân trẻ trung trên nền mặt số size 40mm.', 20, '23990000', 12, 'SanPham19.png'),
+(20, 'OGIVAL 3357JAMS-T – NAM – KÍNH SAPPHIRE – AUTOMATIC (TỰ ĐỘNG) – DÂY KIM LOẠI – MẶT SỐ 40MM', 0, 'Mẫu Ogival 3357JAMS-T phiên bản kim chỉ xanh tone màu thời trang sang trọng với thiết kế 11 viên kim cương đính trên nền mặt số trắng size 40mm.', 6, '18420000', 12, 'SanPham20.png'),
+(21, 'MOVADO 0607209 – NỮ – KÍNH SAPPHIRE – QUARTZ (PIN) – DÂY KIM LOẠI – MẶT SỐ 28MM', 1, 'Mẫu Movado 0607209 phiên bản dây đeo demi tone màu vàng hồng thời trang sang trọng cùng với thiết kế nổi bật đính 11 viên kim cương trên nền mặt số.', 14, '42000000', 10, 'SanPham21.png');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `type_product`
+--
+
+CREATE TABLE `type_product` (
+  `IDTypeProduct` int(11) NOT NULL,
+  `NameTypeProduct` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `type_product`
+--
+
+INSERT INTO `type_product` (`IDTypeProduct`, `NameTypeProduct`) VALUES
+(0, 'Đồng hồ Nam'),
+(1, 'Đồng hồ Nữ');
+
+--
+-- Chỉ mục cho các bảng đã đổ
+--
+
+--
+-- Chỉ mục cho bảng `admin_account`
+--
+ALTER TABLE `admin_account`
+  ADD PRIMARY KEY (`UserName`);
+
+--
+-- Chỉ mục cho bảng `customer`
+--
+ALTER TABLE `customer`
+  ADD PRIMARY KEY (`UserName`);
+
+--
+-- Chỉ mục cho bảng `detail_order`
+--
+ALTER TABLE `detail_order`
+  ADD PRIMARY KEY (`IDDetailOrder`),
+  ADD KEY `FK_DETAIL_ORDER_ORDER_PRODUCT` (`IDOrderProduct`),
+  ADD KEY `FK_DETAIL_ORDER_PRODUCT` (`IDProduct`);
+
+--
+-- Chỉ mục cho bảng `manufacturer`
+--
+ALTER TABLE `manufacturer`
+  ADD PRIMARY KEY (`IDManufacturer`);
+
+--
+-- Chỉ mục cho bảng `order_product`
+--
+ALTER TABLE `order_product`
+  ADD PRIMARY KEY (`IDOrderProduct`),
+  ADD KEY `FK_ORDER_PRODUCT_CUSTOMER` (`UserName`);
+
+--
+-- Chỉ mục cho bảng `product`
+--
+ALTER TABLE `product`
+  ADD PRIMARY KEY (`IDProduct`),
+  ADD KEY `FK_PRODUCT_TYPE_PRODUCT` (`IDTypeProduct`),
+  ADD KEY `FK_PRODUCT_MANUFACTURER` (`IDManufacturer`);
+
+--
+-- Chỉ mục cho bảng `type_product`
+--
+ALTER TABLE `type_product`
+  ADD PRIMARY KEY (`IDTypeProduct`);
+
+--
+-- AUTO_INCREMENT cho các bảng đã đổ
+--
+
+--
+-- AUTO_INCREMENT cho bảng `detail_order`
+--
+ALTER TABLE `detail_order`
+  MODIFY `IDDetailOrder` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT cho bảng `manufacturer`
+--
+ALTER TABLE `manufacturer`
+  MODIFY `IDManufacturer` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT cho bảng `order_product`
+--
+ALTER TABLE `order_product`
+  MODIFY `IDOrderProduct` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT cho bảng `product`
+--
+ALTER TABLE `product`
+  MODIFY `IDProduct` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
