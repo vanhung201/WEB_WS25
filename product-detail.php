@@ -19,10 +19,16 @@
             <div class="logo">
                 <a href="index.php"><img src="Images/logo.png" width="125px"></a>
             </div>
-            <div class="search-wrapper">
-                <span class="las la-search"></span>
-                <input type="search" placeholder="Tìm kiếm" />
-            </div>
+            <form action='search.php' method='get'>
+                <div class="search-wrapper">
+                    <input style="margin: 0px 0px 0px 0px;" type="text" name="keyword" placeholder="Tìm kiếm" />
+                    <button style="border:none; background-color:rgba(0, 0, 0, 0)" name="submit">
+                        <span >
+                            <i class="las la-search"></i>
+                        </span>
+                    </button>
+                </div>
+            </form>
             <nav>
                 <ul id="MenuItems"><b>
                         <li><a href="productsman.php">Nam</a></li>

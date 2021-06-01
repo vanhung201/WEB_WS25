@@ -30,23 +30,32 @@
                 </div>
             </form>
             <nav>
-                <ul id="MenuItems"><b>
+                <ul id="MenuItems">
+                    <b>
                         <li><a href="productsman.php">Nam</a></li>
                         <li><a href="productswoman.php">Nữ</a></li>
-                        <li><a href="">Dịch vụ</a></li>
-                        <li><a href="">Liên hệ</a></li>
+                        <li><a href="#">Dịch vụ</a></li>
+                        <li><a href="#">Liên hệ</a></li>
                         <li><a href="account.php">Tài khoản</a></li>
-                </ul></b>
+                    </b>
+                </ul>
             </nav>
-            <a href="cart.html"><img src="Images/cart.png" width="30px" height="30px"></a>
-            <img src="Images/menu.png" class="menu-icon" onclick="menutoggle()">
+            <a href="cart.html"><img src="Images/cart.png" width="30px" height="30px" alt="cart.png"></a>
+            <img src="Images/menu.png" alt="menu.png" class="menu-icon" onclick="menutoggle()">
         </div>
     </div>
-
+    
     <div class="small-container">
-
         <div class="row row-2">
-            <h2>Tất cả sản phẩm nam</h2>
+            <?php
+            $keyword = $_GET["keyword"];
+            echo"
+            <h2>Kết quả tìm kiếm cho từ khóa
+            <b style='color: red;'>
+                $keyword 
+            </b>
+            </h2>";
+            ?>
             <select>
                 <option>Sắp xếp mặc định</option>
                 <option>Sắp xếp theo giá giảm dần</option>
@@ -58,14 +67,15 @@
 
         <div class="row">
         <?php
+            $keyword = $_GET["keyword"];
             include ("db_connect.php");
-            $sql = "SELECT * FROM product WHERE IDTypeProduct = 0";
+            $sql = "SELECT * FROM product WHERE Name like '%$keyword%'";
             $kq = mysqli_query($conn,$sql);
 
             while($row = mysqli_fetch_row($kq)){
                 echo "
                 <div class='col-4'>
-                <a href='product-detail.php?IDProduct=$row[0]'><img src='Images/$row[7]'></a>
+                <a href='product-detail.php?IDProduct=$row[0]'><img src='Images/$row[7]' alt='$row[7]'></a>
                 <a href='product-detail.php?IDProduct=$row[0]'><h4>$row[1]</h4></a>
                 <div class='ratting'>
                     <i class='fa fa-star'></i>
