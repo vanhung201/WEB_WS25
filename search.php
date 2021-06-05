@@ -48,21 +48,36 @@
     <div class="small-container">
         <div class="row row-2">
             <?php
+
             $keyword = $_GET["keyword"];
-            echo"
-            <h2>Kết quả tìm kiếm cho từ khóa
-            <b style='color: red;'>
-                $keyword 
-            </b>
-            </h2>";
+            include ("db_connect.php");
+            $sql = "SELECT * FROM product WHERE Name like '%$keyword%'";
+            $kq = mysqli_query($conn,$sql);
+            $num = mysqli_num_rows($kq);
+            if($keyword == "")
+            {
+                echo"<h2><b style='color: red;'>Vui lòng nhập từ khóa tìm kiếm!</b></h2>";
+            }
+            else
+            {
+                if($num != 0)
+                {
+                    echo"
+                    <h2>Kết quả tìm kiếm cho từ khóa
+                    <b style='color: red;'> 
+                        ".$keyword."
+                    </b>
+                    </h2>
+                    <select>
+                        <option>Sắp xếp mặc định</option>
+                        <option>Sắp xếp theo giá giảm dần</option>
+                        <option>Sắp xếp theo giá tăng dần</option>
+                        <option>Bán chạy</option>
+                        <option>Giảm giá</option>
+                    </select>";
+                }
+            }
             ?>
-            <select>
-                <option>Sắp xếp mặc định</option>
-                <option>Sắp xếp theo giá giảm dần</option>
-                <option>Sắp xếp theo giá tăng dần</option>
-                <option>Bán chạy</option>
-                <option>Giảm giá</option>
-            </select>
         </div>
 
         <div class="row">
@@ -71,32 +86,54 @@
             include ("db_connect.php");
             $sql = "SELECT * FROM product WHERE Name like '%$keyword%'";
             $kq = mysqli_query($conn,$sql);
+            $num = mysqli_num_rows($kq);
 
-            while($row = mysqli_fetch_row($kq)){
-                echo "
-                <div class='col-4'>
-                <a href='product-detail.php?IDProduct=$row[0]'><img src='Images/$row[7]' alt='$row[7]'></a>
-                <a href='product-detail.php?IDProduct=$row[0]'><h4>$row[1]</h4></a>
-                <div class='ratting'>
-                    <i class='fa fa-star'></i>
-                    <i class='fa fa-star'></i>
-                    <i class='fa fa-star'></i>
-                    <i class='fa fa-star'></i>
-                    <i class='fa fa-star-o'></i>
-                </div>
-                <p><h3>$row[5] VNĐ</h3></p>
-            </div>
-                ";
+            if($keyword != "")
+            {
+                if($num != 0){
+                    while($row = mysqli_fetch_row($kq)){
+                        echo "
+                        <div class='col-4'>
+                        <a href='product-detail.php?IDProduct=$row[0]'><img src='Images/$row[7]' alt='$row[7]'></a>
+                        <a href='product-detail.php?IDProduct=$row[0]'><h4>$row[1]</h4></a>
+                        <div class='ratting'>
+                            <i class='fa fa-star'></i>
+                            <i class='fa fa-star'></i>
+                            <i class='fa fa-star'></i>
+                            <i class='fa fa-star'></i>
+                            <i class='fa fa-star-o'></i>
+                        </div>
+                        <p><h3>$row[5] VNĐ</h3></p>
+                    </div>
+                        ";
+                    }
+                }
+                else{
+                    echo
+                    "
+                        <h2><b style='color: red;'>Không tìm thấy sản phảm phù hợp!</b></h2>
+                    ";
+                }
             };
             mysqli_close($conn);
         ?>
         </div>
         <div class="page-btn">
-            <span>1</span>
-            <span>2</span>
-            <span>3</span>
-            <span>4</span>
-            <span>&#8594;</span>
+            <?php
+            if($keyword != "")
+            {
+                if($num != 0)
+                {
+                    echo"
+                    <span>1</span>
+                    <span>2</span>
+                    <span>3</span>
+                    <span>4</span>
+                    <span>&#8594;</span>
+                ";
+                }
+            }
+            ?>
         </div>
     </div>
 
