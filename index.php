@@ -57,9 +57,21 @@
                     </b>
                 </ul>
             </nav>
-            <a href="cart.html"><img src="Images/cart.png" alt="cart.png" width="30px" height="30px"></a>
-            <img src="Images/menu.png" class="menu-icon" alt="menu.png"
-            onclick="menutoggle()">
+            <a href="cart.php"><img src="Images/cart.png" alt="cart.png" width="30px" height="30px">
+                <img src="Images/menu.png" class="menu-icon" onclick="menutoggle()">
+                <?php
+                    if(isset($_SESSION['cartCount'])) {
+                        ?>
+                            <span class='badge badge-warning' id='lblCartCount'><?php echo $_SESSION['cartCount']?></span>
+                        <?php
+                    }
+                    else {
+                        ?>
+                            <span class='badge badge-warning' id='lblCartCount'>0</span>
+                        <?php
+                    }
+                ?>
+            </a>
         </div>
         <div class="row">
             <div class="col-2">
