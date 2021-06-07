@@ -81,6 +81,15 @@
                 $_SESSION['UserName'] = $row['UserName'];
                 $_SESSION['Name'] = $row['Name'];
 
+                $cart = "SELECT * FROM cart WHERE UserName = '$UserName'";
+                $cart_result = mysqli_query($conn, $cart);
+                $countRecord = 0;
+                while($row = mysqli_fetch_row($cart_result)){
+                    $countRecord += $row[4];
+                };
+                $_SESSION['cartCount'] = $countRecord;
+
+
                 header("Location: index.php");
 
             } else {

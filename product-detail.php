@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html>
 
@@ -10,6 +13,9 @@
     <link rel="stylesheet"
         href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body>
@@ -35,42 +41,72 @@
                         <li><a href="productswoman.php">Nữ</a></li>
                         <li><a href="">Dịch vụ</a></li>
                         <li><a href="">Liên hệ</a></li>
-                        <li><a href="account.php">Tài khoản</a></li>
+                        <?php
+                        if(isset($_SESSION['UserName']) && isset($_SESSION['Name'])) {
+                            ?>
+                                <li>
+                                    <div>
+                                        <div>Xin chào <?php echo $_SESSION['Name']?></div>
+                                        <a style="color: red;" href="logout.php">Đăng xuất</a>
+                                    </div>
+                                </li>
+                            <?php
+                        }
+                        else {
+                            ?>
+                                <li><a href="account.php">Tài khoản</a></li>
+                            <?php
+                        }
+                    ?>
                 </ul></b>
             </nav>
-            <a href="cart.html"><img src="Images/cart.png" width="30px" height="30px"></a>
-            <img src="Images/menu.png" class="menu-icon" onclick="menutoggle()">
+            <a href="cart.php"><img src="Images/cart.png" width="30px" height="30px">
+                <img src="Images/menu.png" class="menu-icon" onclick="menutoggle()">
+                <?php
+                    if(isset($_SESSION['cartCount'])) {
+                        ?>
+                            <span class='badge badge-warning' id='lblCartCount'><?php echo $_SESSION['cartCount']?></span>
+                        <?php
+                    }
+                    else {
+                        ?>
+                            <span class='badge badge-warning' id='lblCartCount'>0</span>
+                        <?php
+                    }
+                ?>
+            </a>
         </div>
     </div>
     <!-----------------single product details----------->
+    <div id='message'></div>
     <div class="small-container single-product">
         <div class="row">
             <?php
 
         $IDProduct = $_GET["IDProduct"];
         include("db_connect.php");
-        $sql = "SELECT Name, Detail, Amount, Img FROM product WHERE IDProduct = $IDProduct";
+        $sql = "SELECT * FROM product WHERE IDProduct = $IDProduct";
         $kq = mysqli_query($conn,$sql);
 
         while($row = mysqli_fetch_row($kq)){
             echo "
             <div class='col-2'>
-                <img src='Images/$row[3]' width='100%' id='ProductImg'>
+                <img src='Images/$row[7]' width='100%' id='ProductImg'>
             </div>
         <div class='col-2'>
-            <h1>$row[0]</h1>
-            <h4>$row[2] VNĐ</h4>
+            <h1>$row[1]</h1>
+            <h4>$row[5] VNĐ</h4>
             <select>
                 <option>Chọn màu</option>
                 <option>Đen</option>
                 <option>Bạc</option>
                 <option>Xám</option>
             </select>
-            <input type='number' value='1'>
-            <a href='#' class='btn'>Thêm vào giỏ</a>
+            <input type='number' value='1' min='1' name='quantityItemName'>
+            <a href='#' class='btn' onclick='AddtoCart(this)' itemid='$row[0]'>Thêm vào giỏ</a>
             <h3>Chi tiết sản phẩm <i class='fa fa-indent'></i></h3>
             <br>
-            <p>$row[1]</p>
+            <p>$row[3]</p>
         </div>
     </div>
             ";
@@ -270,6 +306,90 @@ Q. Bình Thạnh, TP. HCM
         ProductImg.src = SmallImg[3].src;
     }
     </script>
+
+<script type="text/javascript">
+
+    function AddtoCart(item) {
+        var itemId = $(item).attr("itemid");
+        var quantityItem = $("input[name=quantityItemName]").val();
+        var cartCount = $('#lblCartCount').text();
+
+        async function getSoLuong() {
+            await $.ajax({
+                async: true,
+                type: 'GET',
+                data: { id: itemId},
+                url: 'getquantity.php',
+                success: function (response) {
+                    const data = JSON.parse(response);
+                    SoLuongConLai = data.SoLuong
+                },
+                error: function (err) {
+                    console.error(err);
+                }
+            });
+            return SoLuongConLai;
+        }
+
+        getSoLuong().then(soluong => {
+            let SoLuongMua = 0;
+
+            if (soluong > 0) {
+
+                if (quantityItem === "" || quantityItem <= 0) {
+                    SoLuongMua = 1;
+                    $("input[name=quantityItemName]").val(1);
+                }
+
+                else if (parseInt(quantityItem) <= parseInt(soluong)) {
+                    SoLuongMua = quantityItem;
+                    
+                } else {
+                    SoLuongMua = soluong;
+                    $("input[name=quantityItemName]").val(soluong);
+                    alert("Bạn chỉ có thể mua tối đa " + soluong + " sản phẩm.");
+                }                
+
+                $.ajax({
+                    async: true,
+                    type: 'POST',
+                    data: { IDProduct: itemId, SoLuongMua: SoLuongMua },
+                    url: 'addtocart.php',
+                    success: function (response) {
+                        const data = JSON.parse(response);
+                        if(data.isLogin) {
+                            const success = `
+                            <div class="alert alert-success" style="text-align: center;">
+                            <strong>Thành công !</strong> Đã thêm sản phẩm vào giỏ hàng.
+                            </div> `;
+                            $('#message').replaceWith(success);
+
+                            if(data.cannotbuying) {
+                                alert('Ban chỉ có thể mua tối đa ' + soluong + ' sản phẩm.')
+                            }
+                            
+                            $('#lblCartCount').text(data.cartCount);
+                        }
+                        else {
+                            const error = `
+                            <div class="alert alert-warning" style="text-align: center;">
+                            <strong>Cảnh báo !</strong> Bạn cần phải <a href="account.php">đăng nhập</a> để mua sản phẩm.
+                            </div>`;
+                            $('#message').replaceWith(error);
+                        }
+                },
+                    error: function (err) {
+                        console.error('err', err);
+                    }
+                });
+            }
+            else {
+                alert("Sản phẩm này đã hết hàng xin hãy quay lại sau.")
+            }
+        })
+    }
+</script>
+
 </body>
 
 </html>
