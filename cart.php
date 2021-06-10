@@ -115,7 +115,15 @@
                 </table>
             <?php
             ?>
-                <div class="total-price" style='padding-top: 50px;'>
+                <div class="total-price" style='padding-top: 50px; display: flex; justify-content: space-between;'>
+                    <?php
+                        if(mysqli_num_rows($kq) > 0) {
+                            ?><a href='order.php' class='btn btn-primary' style='font-weight: bold;' id='orderButton'>Đặt hàng</a><?php
+                        }
+                        else {
+                            ?><div></div><?php
+                        }
+                    ?>
                     <table>
                         <tr>
                             <td>Tổng tiền</td>
@@ -201,6 +209,10 @@ Q. Bình Thạnh, TP. HCM
                 $('#ThanhTien').text(data.ThanhTien + ' VND');
                 $('#ThanhTien_Thue').text(data.ThanhTien + data.ThanhTien*0.05 + ' VND');
                 $("#" + itemId).remove();
+
+                if(data.cartCount == 0) {
+                    $('#orderButton').replaceWith('<div></div>');
+                }
             },
                 error: function () {
                     alert(data.Message);
