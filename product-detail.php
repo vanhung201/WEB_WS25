@@ -104,7 +104,7 @@
                 <option>Xám</option>
             </select>
             <input type='number' value='1' min='1' name='quantityItemName'>
-            <a href='#' class='btn' onclick='AddtoCart(this)' itemid='$row[0]'>Thêm vào giỏ</a>
+            <a href='cart.php' class='btn' onclick='AddtoCart(this)' itemid='$row[0]'>Thêm vào giỏ</a>
             <h3>Chi tiết sản phẩm <i class='fa fa-indent'></i></h3>
             <br>
             <p>$row[3]</p>

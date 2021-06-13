@@ -145,7 +145,20 @@
             $sql = "SELECT * FROM product WHERE IDTypeProduct = 1";
             $kq = mysqli_query($conn,$sql);
 
-            while($row = mysqli_fetch_row($kq)){
+            $sodulieu = mysqli_num_rows($kq) or die (mysql_error());
+            $sosanpham = 8;
+            $sotrang = ceil($sodulieu/$sosanpham);
+
+            if(!isset($_GET["page"]))
+                $page = 8;
+            else
+                $page = $_GET["page"];
+
+            $x = ($page - 1) * $sosanpham;
+            $command = "SELECT * FROM product WHERE IDTypeProduct = 1 limit ".$x.",".$sosanpham;
+            $result = mysqli_query($conn,$command);
+
+            while($row = mysqli_fetch_row($result)){
                 echo "
                 <div class='col-4'>
                 <a href='product-detail.php?IDProduct=$row[0]'><img src='Images/$row[7]'></a>
@@ -165,10 +178,22 @@
         ?>
     </div>
     <div class="page-btn">
-        <span>1</span>
-        <span>2</span>
-        <span>3</span>
-        <span>4</span>
+        <?php
+        for($i = 1; $i <= $sotrang; $i++)
+        {
+            if($i == $page)
+                echo "<span>$i</span>";
+            else
+            {
+                ?>
+                <a href="productswoman.php?page=<?php echo $i ?>">
+                    <?php echo "<span>$i</span>" ?>
+                </a>
+                <?php
+            }
+        }
+        ?>
+
         <span>&#8594;</span>
     </div>
 </div>
