@@ -33,4 +33,5 @@
       </div>';
     }
 
+    mysqli_close($conn);
 ?>

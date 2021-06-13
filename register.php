@@ -98,4 +98,6 @@
             } 
         }
     }
+
+    mysqli_close($conn);
 ?>
