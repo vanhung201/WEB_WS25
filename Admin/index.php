@@ -267,8 +267,8 @@ if(isset($_SESSION['UserName'])) {
 }
 else {
     ?>
-    <div class="adminMessage">Bạn cần đăng nhập bằng <a class="accountAdmin" href="account.php"><b>TÀI KHOẢN ADMIN</b></a> để tiếp tục</div>
-    <div class="adminMessage"><a class="accountAdmin" href="../index.php"><b>Nhấn vào đây</b></a> để trở về trang chủ</div>
+    <div class="adminMessage">Bạn cần đăng nhập bằng <a style='color: blue' class="accountAdmin" href="account.php"><b>TÀI KHOẢN ADMIN</b></a> để tiếp tục</div>
+    <div class="adminMessage"><a style='color: blue' class="accountAdmin" href="../index.php"><b>Nhấn vào đây</b></a> để trở về trang chủ</div>
     <?php
 }
 ?>

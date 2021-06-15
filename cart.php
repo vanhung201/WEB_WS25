@@ -28,18 +28,18 @@
                 <input type="search" placeholder="Tìm kiếm"/>
             </div>
             <nav>
-                <ul id="MenuItems">
-                    <b>
-                    <li><a href="index.php">Home</a></li>
+                <ul id="MenuItems"><b>
                     <li><a href="productsman.php">Nam</a></li>
                     <li><a href="productswoman.php">Nữ</a></li>
+                    <li><a href="">Dịch vụ</a></li>
+                    <li><a href="">Liên hệ</a></li>
                     <?php
                         if(isset($_SESSION['UserName']) && isset($_SESSION['Name'])) {
                             ?>
                                 <li>
                                     <div>
-                                        Xin chào <?php echo $_SESSION['Name']?>
-                                        <div><a style="color: red;" href="logout.php">Đăng xuất</a></div>
+                                        <div>Xin chào <?php echo $_SESSION['Name']?></div>
+                                        <a style="color: red;" href="logout.php">Đăng xuất</a>
                                     </div>
                                 </li>
                             <?php
@@ -49,11 +49,10 @@
                                 <li><a href="account.php">Tài khoản</a></li>
                             <?php
                         }
-                        ?>
-                    </b>
-                </ul>
+                    ?>
+                </ul></b>
             </nav>
-            <a href="cart.php"><img src="Images/cart.png" alt="cart.png" width="30px" height="30px">
+            <a href="cart.php"><img src="Images/cart.png" width="30px" height="30px">
                 <img src="Images/menu.png" alt="menu.png" class="menu-icon" onclick="menutoggle()">
                 <?php
                     if(isset($_SESSION['cartCount'])) {
