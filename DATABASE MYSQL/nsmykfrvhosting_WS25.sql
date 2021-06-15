@@ -2,10 +2,10 @@
 -- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th6 01, 2021 lúc 12:14 PM
--- Phiên bản máy phục vụ: 10.4.18-MariaDB
--- Phiên bản PHP: 8.0.3
+-- Host: 127.0.0.1
+-- Generation Time: Jun 15, 2021 at 03:13 PM
+-- Server version: 10.4.19-MariaDB
+-- PHP Version: 8.0.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `nsmykfrvhosting_ws25`
+-- Database: `nsmykfrvhosting_ws25`
 --
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `admin_account`
+-- Table structure for table `admin_account`
 --
 
 CREATE TABLE `admin_account` (
@@ -33,7 +33,7 @@ CREATE TABLE `admin_account` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `admin_account`
+-- Dumping data for table `admin_account`
 --
 
 INSERT INTO `admin_account` (`UserName`, `PassWord`) VALUES
@@ -47,7 +47,32 @@ INSERT INTO `admin_account` (`UserName`, `PassWord`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `customer`
+-- Table structure for table `cart`
+--
+
+CREATE TABLE `cart` (
+  `IDCart` int(11) UNSIGNED NOT NULL,
+  `IDProduct` int(11) NOT NULL,
+  `IDTypeProduct` int(11) NOT NULL,
+  `NameProduct` varchar(150) DEFAULT NULL,
+  `QuantityBuying` int(11) DEFAULT NULL,
+  `UnitPrice` float DEFAULT NULL,
+  `Img` varchar(150) DEFAULT NULL,
+  `UserName` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`IDCart`, `IDProduct`, `IDTypeProduct`, `NameProduct`, `QuantityBuying`, `UnitPrice`, `Img`, `UserName`) VALUES
+(56, 4, 0, 'Casio AE-1200WHD-1AVDF – Nam – Kính Nhựa – Quartz (Pin) – Dây Kim Loại', 6, 7140000, 'SanPham4.png', 'vanhung201'),
+(95, 2, 0, 'G-Shock GA-400-1BDR – Nam – Quartz (Pin) – Dây Cao Su', 1, 4230000, 'SanPham2.png', 'nguyenchithanh');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customer`
 --
 
 CREATE TABLE `customer` (
@@ -62,19 +87,20 @@ CREATE TABLE `customer` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `customer`
+-- Dumping data for table `customer`
 --
 
 INSERT INTO `customer` (`UserName`, `PassWord`, `Email`, `Name`, `Gender`, `PhoneNumber`, `DateOfBirth`, `Address`) VALUES
 ('vanhung201', '123456', 'hungsky15@gmail.com', 'Lê Văn Hùng', 'Nam', '0355012525', '2001-03-20', '566/169 Nguyễn Thái Sơn, Phường 5, Quận Gò Vấp, Tp. Hồ Chí Minh'),
 ('phantan', '123456', 'phantan@gmail.com', 'Nguyễn Phan Tân', 'Nam', '0379353889', '2001-09-28', 'Chợ Bà Tô, Bà Rịa - Vũng Tàu'),
 ('giangnguyen', '123456', 'giangnguyen@gmail.com', 'Nguyễn Thị Giang', 'Nữ', '0328237637', '2001-07-10', 'Phước Tân, Bà Rịa - Vũng Tàu'),
-('anhthu', '123456', 'nguyenthu@gmail.com', 'Nguyễn Phạm Anh Thư', 'Nữ', '0944087025', '2001-12-25', 'Ấp Trang Hoàng, Xã Bông Trang, Bà Rịa - Vũng Tàu');
+('anhthu', '123456', 'nguyenthu@gmail.com', 'Nguyễn Phạm Anh Thư', 'Nữ', '0944087025', '2001-12-25', 'Ấp Trang Hoàng, Xã Bông Trang, Bà Rịa - Vũng Tàu'),
+('nguyenchithanh', '123456', 'nguyenchithanh@gmail.com', 'Nguyễn Chí Thành', 'Nam', '0522905064', '2001-06-05', 'HCM');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `detail_order`
+-- Table structure for table `detail_order`
 --
 
 CREATE TABLE `detail_order` (
@@ -88,7 +114,7 @@ CREATE TABLE `detail_order` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `detail_order`
+-- Dumping data for table `detail_order`
 --
 
 INSERT INTO `detail_order` (`IDDetailOrder`, `IDOrderProduct`, `IDProduct`, `TotalProduct`, `Amount`, `Discount`, `TotalAmount`) VALUES
@@ -100,12 +126,18 @@ INSERT INTO `detail_order` (`IDDetailOrder`, `IDOrderProduct`, `IDProduct`, `Tot
 (6, 3, 4, 3, '7140000', 0, '21420000'),
 (7, 3, 8, 1, '18830000', 0, '18830000'),
 (8, 4, 14, 1, '2340000', 10, '2106000'),
-(9, 4, 11, 1, '4230000', 0, '4230000');
+(9, 4, 11, 1, '4230000', 0, '4230000'),
+(13, 27, 2, 2, '4230000', 0, '8460000'),
+(12, 27, 1, 3, '1246000', 0, '3738000'),
+(14, 28, 1, 3, '1246000', 0, '3738000'),
+(15, 28, 11, 2, '4230000', 0, '8460000'),
+(16, 29, 2, 1, '4230000', 0, '4230000'),
+(17, 29, 1, 1, '1246000', 0, '1246000');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `manufacturer`
+-- Table structure for table `manufacturer`
 --
 
 CREATE TABLE `manufacturer` (
@@ -115,7 +147,7 @@ CREATE TABLE `manufacturer` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `manufacturer`
+-- Dumping data for table `manufacturer`
 --
 
 INSERT INTO `manufacturer` (`IDManufacturer`, `Name`, `Origin`) VALUES
@@ -135,7 +167,7 @@ INSERT INTO `manufacturer` (`IDManufacturer`, `Name`, `Origin`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `order_product`
+-- Table structure for table `order_product`
 --
 
 CREATE TABLE `order_product` (
@@ -144,23 +176,27 @@ CREATE TABLE `order_product` (
   `Status` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `StartDate` date DEFAULT NULL,
   `UpdateDate` date DEFAULT NULL,
-  `NoteOrder` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `NoteOrder` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Total` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `order_product`
+-- Dumping data for table `order_product`
 --
 
-INSERT INTO `order_product` (`IDOrderProduct`, `UserName`, `Status`, `StartDate`, `UpdateDate`, `NoteOrder`) VALUES
-(1, 'vanhung201', 'Pending', '2021-05-15', '2021-05-15', NULL),
-(2, 'anhthu', 'Pending', '2021-05-01', '2021-05-03', NULL),
-(3, 'phantan', 'Pending', '2021-04-30', '2021-05-03', NULL),
-(4, 'giangnguyen', 'Pending', '2021-03-10', '2021-03-10', NULL);
+INSERT INTO `order_product` (`IDOrderProduct`, `UserName`, `Status`, `StartDate`, `UpdateDate`, `NoteOrder`, `Total`) VALUES
+(1, 'vanhung201', 'Pending', '2021-05-15', '2021-05-15', NULL, NULL),
+(2, 'anhthu', 'Pending', '2021-05-01', '2021-05-03', NULL, NULL),
+(3, 'phantan', 'Pending', '2021-04-30', '2021-05-03', NULL, NULL),
+(4, 'giangnguyen', 'Pending', '2021-03-10', '2021-03-10', NULL, NULL),
+(27, 'nguyenchithanh', 'Pending', '2021-06-10', '2021-06-10', 'My Note', '12198000'),
+(28, 'nguyenchithanh', 'Pending', '2021-06-14', '2021-06-14', 'My Note', '12198000'),
+(29, 'nguyenchithanh', 'Pending', '2021-06-14', '2021-06-14', 'My Note', '5476000');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `product`
+-- Table structure for table `product`
 --
 
 CREATE TABLE `product` (
@@ -176,7 +212,7 @@ CREATE TABLE `product` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `product`
+-- Dumping data for table `product`
 --
 
 INSERT INTO `product` (`IDProduct`, `Name`, `IDTypeProduct`, `Detail`, `Inventory`, `Amount`, `IDManufacturer`, `Img`, `PurchaseDate`) VALUES
@@ -204,7 +240,7 @@ INSERT INTO `product` (`IDProduct`, `Name`, `IDTypeProduct`, `Detail`, `Inventor
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `type_product`
+-- Table structure for table `type_product`
 --
 
 CREATE TABLE `type_product` (
@@ -213,7 +249,7 @@ CREATE TABLE `type_product` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `type_product`
+-- Dumping data for table `type_product`
 --
 
 INSERT INTO `type_product` (`IDTypeProduct`, `NameTypeProduct`) VALUES
@@ -221,23 +257,29 @@ INSERT INTO `type_product` (`IDTypeProduct`, `NameTypeProduct`) VALUES
 (1, 'Đồng hồ Nữ');
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `admin_account`
+-- Indexes for table `admin_account`
 --
 ALTER TABLE `admin_account`
   ADD PRIMARY KEY (`UserName`);
 
 --
--- Chỉ mục cho bảng `customer`
+-- Indexes for table `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`IDCart`);
+
+--
+-- Indexes for table `customer`
 --
 ALTER TABLE `customer`
   ADD PRIMARY KEY (`UserName`);
 
 --
--- Chỉ mục cho bảng `detail_order`
+-- Indexes for table `detail_order`
 --
 ALTER TABLE `detail_order`
   ADD PRIMARY KEY (`IDDetailOrder`),
@@ -245,20 +287,20 @@ ALTER TABLE `detail_order`
   ADD KEY `FK_DETAIL_ORDER_PRODUCT` (`IDProduct`);
 
 --
--- Chỉ mục cho bảng `manufacturer`
+-- Indexes for table `manufacturer`
 --
 ALTER TABLE `manufacturer`
   ADD PRIMARY KEY (`IDManufacturer`);
 
 --
--- Chỉ mục cho bảng `order_product`
+-- Indexes for table `order_product`
 --
 ALTER TABLE `order_product`
   ADD PRIMARY KEY (`IDOrderProduct`),
   ADD KEY `FK_ORDER_PRODUCT_CUSTOMER` (`UserName`);
 
 --
--- Chỉ mục cho bảng `product`
+-- Indexes for table `product`
 --
 ALTER TABLE `product`
   ADD PRIMARY KEY (`IDProduct`),
@@ -266,35 +308,41 @@ ALTER TABLE `product`
   ADD KEY `FK_PRODUCT_MANUFACTURER` (`IDManufacturer`);
 
 --
--- Chỉ mục cho bảng `type_product`
+-- Indexes for table `type_product`
 --
 ALTER TABLE `type_product`
   ADD PRIMARY KEY (`IDTypeProduct`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `detail_order`
+-- AUTO_INCREMENT for table `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `IDCart` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
+
+--
+-- AUTO_INCREMENT for table `detail_order`
 --
 ALTER TABLE `detail_order`
-  MODIFY `IDDetailOrder` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `IDDetailOrder` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT cho bảng `manufacturer`
+-- AUTO_INCREMENT for table `manufacturer`
 --
 ALTER TABLE `manufacturer`
   MODIFY `IDManufacturer` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT cho bảng `order_product`
+-- AUTO_INCREMENT for table `order_product`
 --
 ALTER TABLE `order_product`
-  MODIFY `IDOrderProduct` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `IDOrderProduct` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
--- AUTO_INCREMENT cho bảng `product`
+-- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
   MODIFY `IDProduct` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;

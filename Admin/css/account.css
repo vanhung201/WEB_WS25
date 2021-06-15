@@ -526,3 +526,12 @@ form a{
 .accountAdmin:hover {
     color: #888888;
 }
+.adminMessage {
+
+    padding: 20px 0px; 
+
+    text-align: center; 
+
+    font-size: 20px;
+
+}
