@@ -35,16 +35,17 @@
             <nav>
                 <ul id="MenuItems">
                     <b>
-                        <li><a href="index.php">Home</a></li>
                         <li><a href="productsman.php">Nam</a></li>
                         <li><a href="productswoman.php">Nữ</a></li>
+                        <li><a href="#">Dịch vụ</a></li>
+                        <li><a href="#">Liên hệ</a></li>
                         <?php
                         if(isset($_SESSION['UserName']) && isset($_SESSION['Name'])) {
                             ?>
                                 <li>
                                     <div>
-                                        Xin chào <?php echo $_SESSION['Name']?>
-                                        <div><a style="color: red;" href="logout.php">Đăng xuất</a></div>
+                                        <div>Xin chào <?php echo $_SESSION['Name']?></div>
+                                        <a style="color: red;" href="logout.php">Đăng xuất</a>
                                     </div>
                                 </li>
                             <?php
@@ -108,8 +109,6 @@
                     </select>";
                 }
             }
-
-            mysqli_close($conn);
             ?>
         </div>
 

@@ -28,18 +28,18 @@
                 <input type="search" placeholder="Tìm kiếm" />
             </div>
             <nav>
-                <ul id="MenuItems">
-                    <b>
-                        <li><a href="index.php">Home</a></li>
+                <ul id="MenuItems"><b>
                         <li><a href="productsman.php">Nam</a></li>
                         <li><a href="productswoman.php">Nữ</a></li>
+                        <li><a href="#">Dịch vụ</a></li>
+                        <li><a href="#">Liên hệ</a></li>
                         <?php
                         if(isset($_SESSION['UserName']) && isset($_SESSION['Name'])) {
                             ?>
                                 <li>
                                     <div>
-                                        Xin chào <?php echo $_SESSION['Name']?>
-                                        <div><a style="color: red;" href="logout.php">Đăng xuất</a></div>
+                                        <div>Xin chào <?php echo $_SESSION['Name']?></div>
+                                        <a style="color: red;" href="logout.php">Đăng xuất</a>
                                     </div>
                                 </li>
                             <?php
@@ -49,9 +49,8 @@
                                 <li><a href="account.php">Tài khoản</a></li>
                             <?php
                         }
-                        ?>
-                    </b>
-                </ul>
+                    ?>
+                </ul></b>
             </nav>
             <a href="cart.php"><img src="Images/cart.png" alt="cart.png" width="30px" height="30px">
                 <img src="Images/menu.png" class="menu-icon" alt="menu.png" onclick="menutoggle()">
@@ -101,7 +100,7 @@
                             <input name="UserName" type="text" placeholder="Tên đăng nhập">
                             <input name="PassWord" type="password" placeholder="Mật khẩu">
                             <input name="Email" type="email" placeholder="Email">
-                            <input name="Name" type="text" placeholder="Họ và Tên">
+                            <input name="Name" type="text" placeholder="Tên người dùng">
                             <input name="Gender" type="text" placeholder="Giới tính">
                             <input name="PhoneNumber" type="text" placeholder="Số điện thoại">
                             <input name="DateOfBirth" type="date" placeholder="Ngày sinh">
@@ -127,7 +126,7 @@ Q. Bình Thạnh, TP. HCM
                 </pre>
                 </div>
                 <div class="footer-col-2">
-                    <img src="Images/logo.png" alt="logo">
+                    <img src="Images/logo.png">
                 </div>
                 <div class="footer-col-3">
                     <h3>Hướng dẫn</h3>
