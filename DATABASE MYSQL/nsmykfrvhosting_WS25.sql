@@ -2,10 +2,10 @@
 -- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jun 15, 2021 at 03:13 PM
--- Server version: 10.4.19-MariaDB
--- PHP Version: 8.0.6
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th6 15, 2021 lúc 04:46 PM
+-- Phiên bản máy phục vụ: 10.4.18-MariaDB
+-- Phiên bản PHP: 8.0.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `nsmykfrvhosting_ws25`
+-- Cơ sở dữ liệu: `nsmykfrvhosting_ws25`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin_account`
+-- Cấu trúc bảng cho bảng `admin_account`
 --
 
 CREATE TABLE `admin_account` (
@@ -33,7 +33,7 @@ CREATE TABLE `admin_account` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `admin_account`
+-- Đang đổ dữ liệu cho bảng `admin_account`
 --
 
 INSERT INTO `admin_account` (`UserName`, `PassWord`) VALUES
@@ -47,7 +47,7 @@ INSERT INTO `admin_account` (`UserName`, `PassWord`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cart`
+-- Cấu trúc bảng cho bảng `cart`
 --
 
 CREATE TABLE `cart` (
@@ -61,18 +61,10 @@ CREATE TABLE `cart` (
   `UserName` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `cart`
---
-
-INSERT INTO `cart` (`IDCart`, `IDProduct`, `IDTypeProduct`, `NameProduct`, `QuantityBuying`, `UnitPrice`, `Img`, `UserName`) VALUES
-(56, 4, 0, 'Casio AE-1200WHD-1AVDF – Nam – Kính Nhựa – Quartz (Pin) – Dây Kim Loại', 6, 7140000, 'SanPham4.png', 'vanhung201'),
-(95, 2, 0, 'G-Shock GA-400-1BDR – Nam – Quartz (Pin) – Dây Cao Su', 1, 4230000, 'SanPham2.png', 'nguyenchithanh');
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `customer`
+-- Cấu trúc bảng cho bảng `customer`
 --
 
 CREATE TABLE `customer` (
@@ -87,7 +79,7 @@ CREATE TABLE `customer` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `customer`
+-- Đang đổ dữ liệu cho bảng `customer`
 --
 
 INSERT INTO `customer` (`UserName`, `PassWord`, `Email`, `Name`, `Gender`, `PhoneNumber`, `DateOfBirth`, `Address`) VALUES
@@ -100,7 +92,7 @@ INSERT INTO `customer` (`UserName`, `PassWord`, `Email`, `Name`, `Gender`, `Phon
 -- --------------------------------------------------------
 
 --
--- Table structure for table `detail_order`
+-- Cấu trúc bảng cho bảng `detail_order`
 --
 
 CREATE TABLE `detail_order` (
@@ -114,7 +106,7 @@ CREATE TABLE `detail_order` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `detail_order`
+-- Đang đổ dữ liệu cho bảng `detail_order`
 --
 
 INSERT INTO `detail_order` (`IDDetailOrder`, `IDOrderProduct`, `IDProduct`, `TotalProduct`, `Amount`, `Discount`, `TotalAmount`) VALUES
@@ -132,12 +124,14 @@ INSERT INTO `detail_order` (`IDDetailOrder`, `IDOrderProduct`, `IDProduct`, `Tot
 (14, 28, 1, 3, '1246000', 0, '3738000'),
 (15, 28, 11, 2, '4230000', 0, '8460000'),
 (16, 29, 2, 1, '4230000', 0, '4230000'),
-(17, 29, 1, 1, '1246000', 0, '1246000');
+(17, 29, 1, 1, '1246000', 0, '1246000'),
+(18, 30, 1, 7, '1246000', 0, '8722000'),
+(19, 30, 11, 1, '4230000', 0, '4230000');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `manufacturer`
+-- Cấu trúc bảng cho bảng `manufacturer`
 --
 
 CREATE TABLE `manufacturer` (
@@ -147,7 +141,7 @@ CREATE TABLE `manufacturer` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `manufacturer`
+-- Đang đổ dữ liệu cho bảng `manufacturer`
 --
 
 INSERT INTO `manufacturer` (`IDManufacturer`, `Name`, `Origin`) VALUES
@@ -167,7 +161,7 @@ INSERT INTO `manufacturer` (`IDManufacturer`, `Name`, `Origin`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `order_product`
+-- Cấu trúc bảng cho bảng `order_product`
 --
 
 CREATE TABLE `order_product` (
@@ -181,7 +175,7 @@ CREATE TABLE `order_product` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `order_product`
+-- Đang đổ dữ liệu cho bảng `order_product`
 --
 
 INSERT INTO `order_product` (`IDOrderProduct`, `UserName`, `Status`, `StartDate`, `UpdateDate`, `NoteOrder`, `Total`) VALUES
@@ -191,12 +185,13 @@ INSERT INTO `order_product` (`IDOrderProduct`, `UserName`, `Status`, `StartDate`
 (4, 'giangnguyen', 'Pending', '2021-03-10', '2021-03-10', NULL, NULL),
 (27, 'nguyenchithanh', 'Pending', '2021-06-10', '2021-06-10', 'My Note', '12198000'),
 (28, 'nguyenchithanh', 'Pending', '2021-06-14', '2021-06-14', 'My Note', '12198000'),
-(29, 'nguyenchithanh', 'Pending', '2021-06-14', '2021-06-14', 'My Note', '5476000');
+(29, 'nguyenchithanh', 'Pending', '2021-06-14', '2021-06-14', 'My Note', '5476000'),
+(30, 'nguyenchithanh', 'Pending', '2021-06-15', '2021-06-15', 'My Note', '12952000');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product`
+-- Cấu trúc bảng cho bảng `product`
 --
 
 CREATE TABLE `product` (
@@ -212,7 +207,7 @@ CREATE TABLE `product` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `product`
+-- Đang đổ dữ liệu cho bảng `product`
 --
 
 INSERT INTO `product` (`IDProduct`, `Name`, `IDTypeProduct`, `Detail`, `Inventory`, `Amount`, `IDManufacturer`, `Img`, `PurchaseDate`) VALUES
@@ -235,12 +230,16 @@ INSERT INTO `product` (`IDProduct`, `Name`, `IDTypeProduct`, `Detail`, `Inventor
 (18, 'CALVIN KLEIN K8M214CB – NAM – QUARTZ (PIN) – DÂY DA', 0, 'Mẫu đồng hồ nam Calvin Klein mặt số tone nền đen kích thước 40mm kiểu dáng giản dị 3 kim cùng chi tiết vạch số tạo nét mỏng mạ vàng hồng thời trang.', 13, '7200000', 11, 'SanPham18.png', '2021-06-01'),
 (19, 'OGIVAL 358-351AG42R-GL-V – NAM – KÍNH SAPPHIRE – AUTOMATIC (TỰ ĐỘNG) – DÂY DA – MẶT SỐ 40MM', 0, 'Mẫu Ogival 358-351AG42R-GL-V phiên bản kim chỉ xanh cùng với nền cọc số la mã tạo hình mỏng cách tân trẻ trung trên nền mặt số size 40mm.', 20, '23990000', 12, 'SanPham19.png', '2021-06-01'),
 (20, 'OGIVAL 3357JAMS-T – NAM – KÍNH SAPPHIRE – AUTOMATIC (TỰ ĐỘNG) – DÂY KIM LOẠI – MẶT SỐ 40MM', 0, 'Mẫu Ogival 3357JAMS-T phiên bản kim chỉ xanh tone màu thời trang sang trọng với thiết kế 11 viên kim cương đính trên nền mặt số trắng size 40mm.', 6, '18420000', 12, 'SanPham20.png', '2021-06-01'),
-(21, 'MOVADO 0607209 – NỮ – KÍNH SAPPHIRE – QUARTZ (PIN) – DÂY KIM LOẠI – MẶT SỐ 28MM', 1, 'Mẫu Movado 0607209 phiên bản dây đeo demi tone màu vàng hồng thời trang sang trọng cùng với thiết kế nổi bật đính 11 viên kim cương trên nền mặt số.', 14, '42000000', 10, 'SanPham21.png', '2021-06-01');
+(21, 'MOVADO 0607209 – NỮ – KÍNH SAPPHIRE – QUARTZ (PIN) – DÂY KIM LOẠI – MẶT SỐ 28MM', 1, 'Mẫu Movado 0607209 phiên bản dây đeo demi tone màu vàng hồng thời trang sang trọng cùng với thiết kế nổi bật đính 11 viên kim cương trên nền mặt số.', 14, '42000000', 10, 'SanPham21.png', '2021-06-01'),
+(22, 'DOXA D158KWH – NỮ – KÍNH SAPPHIRE – QUARTZ (PIN) – DÂY DA', 1, 'Mẫu Doxa D158KWH với xu hướng hoài cổ dành cho nữ, với thiết kế gia công đính kèm 8 viên kim cương nổi bật trên nền mặt số trắng size 29mm.', 50, '15800000', 3, 'SanPham22.png', '2021-06-13'),
+(23, 'DOXA D182SWB – NỮ – KÍNH SAPPHIRE – QUARTZ (PIN) – DÂY DA', 1, 'Mẫu Doxa nữ D182SWB mặt số tròn truyền thống size 35mm sang trọng nổi bật đính kèm 8 viên kim cương tạo nên vẻ thời trang cho phái đẹp.', 19, '18720000', 3, 'SanPham23.png', '2021-06-13'),
+(24, 'CASIO LA670WEGB-1BDF – NỮ – KÍNH NHỰA – QUARTZ (PIN) – DÂY KIM LOẠI', 1, 'Mẫu đồng hồ Casio LA670WEGB-1BDF với thiết kế bộ máy nhỏ gọn tạo nên vẻ ngoài thanh mảnh nữ tính, vỏ máy tông màu vàng phối cùng mẫu dây đeo kim loại đen tăng thêm vẻ đẹp thời trang.', 23, '1950000', 1, 'SanPham24.png', '2021-06-08'),
+(25, 'CASIO NỮ – QUARTZ (PIN) – KÍNH NHỰA – DÂY CAO SU (LW-200-1BVDF)', 1, 'Đồng hồ nữ Casio LW-200-1BVDF với mặt đồng hồ điện tử kính nhựa cao cấp, vỏ niềng làm bằng thép không gỉ màu đen, dây đeo là cao su siêu bền màu đen, với các tính năng của đồng hồ điện tử.', 42, '864000', 1, 'SanPham25.png', '2021-06-05');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `type_product`
+-- Cấu trúc bảng cho bảng `type_product`
 --
 
 CREATE TABLE `type_product` (
@@ -249,7 +248,7 @@ CREATE TABLE `type_product` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `type_product`
+-- Đang đổ dữ liệu cho bảng `type_product`
 --
 
 INSERT INTO `type_product` (`IDTypeProduct`, `NameTypeProduct`) VALUES
@@ -257,29 +256,29 @@ INSERT INTO `type_product` (`IDTypeProduct`, `NameTypeProduct`) VALUES
 (1, 'Đồng hồ Nữ');
 
 --
--- Indexes for dumped tables
+-- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Indexes for table `admin_account`
+-- Chỉ mục cho bảng `admin_account`
 --
 ALTER TABLE `admin_account`
   ADD PRIMARY KEY (`UserName`);
 
 --
--- Indexes for table `cart`
+-- Chỉ mục cho bảng `cart`
 --
 ALTER TABLE `cart`
   ADD PRIMARY KEY (`IDCart`);
 
 --
--- Indexes for table `customer`
+-- Chỉ mục cho bảng `customer`
 --
 ALTER TABLE `customer`
   ADD PRIMARY KEY (`UserName`);
 
 --
--- Indexes for table `detail_order`
+-- Chỉ mục cho bảng `detail_order`
 --
 ALTER TABLE `detail_order`
   ADD PRIMARY KEY (`IDDetailOrder`),
@@ -287,20 +286,20 @@ ALTER TABLE `detail_order`
   ADD KEY `FK_DETAIL_ORDER_PRODUCT` (`IDProduct`);
 
 --
--- Indexes for table `manufacturer`
+-- Chỉ mục cho bảng `manufacturer`
 --
 ALTER TABLE `manufacturer`
   ADD PRIMARY KEY (`IDManufacturer`);
 
 --
--- Indexes for table `order_product`
+-- Chỉ mục cho bảng `order_product`
 --
 ALTER TABLE `order_product`
   ADD PRIMARY KEY (`IDOrderProduct`),
   ADD KEY `FK_ORDER_PRODUCT_CUSTOMER` (`UserName`);
 
 --
--- Indexes for table `product`
+-- Chỉ mục cho bảng `product`
 --
 ALTER TABLE `product`
   ADD PRIMARY KEY (`IDProduct`),
@@ -308,44 +307,44 @@ ALTER TABLE `product`
   ADD KEY `FK_PRODUCT_MANUFACTURER` (`IDManufacturer`);
 
 --
--- Indexes for table `type_product`
+-- Chỉ mục cho bảng `type_product`
 --
 ALTER TABLE `type_product`
   ADD PRIMARY KEY (`IDTypeProduct`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT cho các bảng đã đổ
 --
 
 --
--- AUTO_INCREMENT for table `cart`
+-- AUTO_INCREMENT cho bảng `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `IDCart` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
+  MODIFY `IDCart` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
 
 --
--- AUTO_INCREMENT for table `detail_order`
+-- AUTO_INCREMENT cho bảng `detail_order`
 --
 ALTER TABLE `detail_order`
-  MODIFY `IDDetailOrder` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `IDDetailOrder` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
--- AUTO_INCREMENT for table `manufacturer`
+-- AUTO_INCREMENT cho bảng `manufacturer`
 --
 ALTER TABLE `manufacturer`
   MODIFY `IDManufacturer` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT for table `order_product`
+-- AUTO_INCREMENT cho bảng `order_product`
 --
 ALTER TABLE `order_product`
-  MODIFY `IDOrderProduct` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `IDOrderProduct` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
--- AUTO_INCREMENT for table `product`
+-- AUTO_INCREMENT cho bảng `product`
 --
 ALTER TABLE `product`
-  MODIFY `IDProduct` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `IDProduct` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
