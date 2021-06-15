@@ -78,7 +78,7 @@
 
     <div class="small-container">
         <div class="brands">
-            <div class="row row-2"><h2>Các hãng đồng hồ phổ biến</h2></div>
+            <div class="row row-2"><h2>Các hãng đồng hồ phổ biến.</h2></div>
             <div class="small-container">
                 <div class="row">
                     <?php
