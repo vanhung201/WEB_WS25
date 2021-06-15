@@ -32,18 +32,18 @@
                 </div>
             </form>
             <nav>
-                <ul id="MenuItems"><b>
+                <ul id="MenuItems">
+                    <b>
+                        <li><a href="index.php">Home</a></li>
                         <li><a href="productsman.php">Nam</a></li>
                         <li><a href="productswoman.php">Nữ</a></li>
-                        <li><a href="">Dịch vụ</a></li>
-                        <li><a href="">Liên hệ</a></li>
                         <?php
                         if(isset($_SESSION['UserName']) && isset($_SESSION['Name'])) {
                             ?>
                                 <li>
                                     <div>
-                                        <div>Xin chào <?php echo $_SESSION['Name']?></div>
-                                        <a style="color: red;" href="logout.php">Đăng xuất</a>
+                                        Xin chào <?php echo $_SESSION['Name']?>
+                                        <div><a style="color: red;" href="logout.php">Đăng xuất</a></div>
                                     </div>
                                 </li>
                             <?php
@@ -53,11 +53,12 @@
                                 <li><a href="account.php">Tài khoản</a></li>
                             <?php
                         }
-                    ?>
-                </ul></b>
+                        ?>
+                    </b>
+                </ul>
             </nav>
-            <a href="cart.php"><img src="Images/cart.png" width="30px" height="30px">
-                <img src="Images/menu.png" class="menu-icon" onclick="menutoggle()">
+            <a href="cart.php"><img src="Images/cart.png" alt="cart.png" width="30px" height="30px">
+                <img src="Images/menu.png" alt="menu.png" class="menu-icon" onclick="menutoggle()">
                 <?php
                     if(isset($_SESSION['cartCount'])) {
                         ?>
@@ -75,6 +76,58 @@
     </div>
 
     <div class="small-container">
+        <div class="brands">
+            <div class="row row-2"><h2>Các hãng đồng hồ phổ biến</h2></div>
+            <div class="small-container">
+                <div class="row">
+                    <?php
+                    include ("db_connect.php");
+                    $sql = "SELECT * FROM product";
+                    $kq = mysqli_query($conn,$sql);
+
+                    echo "
+                <div class='col-5'>
+                    <a href=brandlist.php?nsx=1><img src='Images/casio.png' alt='casio.png'></a>
+                </div>
+                <div class='col-5'>
+                    <a href=brandlist.php?nsx=2><img src='Images/DW.png' alt='DW.png'></a>
+                </div>
+                <div class='col-5'>
+                    <a href=brandlist.php?nsx=3><img src='Images/doxa.png' alt='doxa.png'></a>
+                </div>
+                <div class='col-5'>
+                    <a href=brandlist.php?nsx=4><img src='Images/Longines.png' alt='Longines.png'></a>
+                </div>
+                <div class='col-5'>
+                    <a href=brandlist.php?nsx=5><img src='Images/orient.png' alt='orient.png'></a>
+                </div>
+                <div class='col-5'>
+                    <a href=brandlist.php?nsx=6><img src='Images/tissot.png' alt='tissot.png'></a>
+                </div>                
+                <div class='col-5'>
+                    <a href=brandlist.php?nsx=7><img src='Images/fossil.png' alt='fossil.png'></a>
+                </div>                
+                <div class='col-5'>
+                    <a href=brandlist.php?nsx=8><img src='Images/citizen.png' alt='citizen.png'></a>
+                </div>                
+                <div class='col-5'>
+                    <a href=brandlist.php?nsx=9><img src='Images/skagen.png' alt='skagen.png'></a>
+                </div>                
+                <div class='col-5'>
+                    <a href=brandlist.php?nsx=10><img src='Images/movado.png' alt='movado.png'></a>
+                </div>
+                <div class='col-5'>
+                    <a href=brandlist.php?nsx=11><img src='Images/CK.png' alt='CK.png'></a>
+                </div>
+                <div class='col-5'>
+                    <a href=brandlist.php?nsx=12><img src='Images/ogival.png' alt='ogival.png'></a>
+                </div>
+                ";
+                    mysqli_close($conn);
+                    ?>
+                </div>
+            </div>
+        </div>
 
         <div class="row row-2">
             <h2>Tất cả sản phẩm nam</h2>
@@ -93,7 +146,20 @@
             $sql = "SELECT * FROM product WHERE IDTypeProduct = 0";
             $kq = mysqli_query($conn,$sql);
 
-            while($row = mysqli_fetch_row($kq)){
+            $sodulieu = mysqli_num_rows($kq) or die (mysql_error());
+            $sosanpham = 8;
+            $sotrang = ceil($sodulieu/$sosanpham);
+
+            if(!isset($_GET["page"]))
+                $page = 1;
+            else
+                $page = $_GET["page"];
+
+            $x = ($page - 1) * $sosanpham;
+            $command = "SELECT * FROM product WHERE IDTypeProduct = 0 limit ".$x.",".$sosanpham;
+            $result = mysqli_query($conn,$command);
+
+            while($row = mysqli_fetch_row($result)){
                 echo "
                 <div class='col-4'>
                 <a href='product-detail.php?IDProduct=$row[0]'><img src='Images/$row[7]'></a>
@@ -113,10 +179,22 @@
         ?>
         </div>
         <div class="page-btn">
-            <span>1</span>
-            <span>2</span>
-            <span>3</span>
-            <span>4</span>
+            <?php
+            for($i = 1; $i <= $sotrang; $i++)
+            {
+                if($i == $page)
+                    echo "<span>$i</span>";
+                else
+                {
+                    ?>
+                    <a href="productsman.php?page=<?php echo $i ?>">
+                        <?php echo "<span>$i</span>" ?>
+                    </a>
+                    <?php
+                }
+            }
+            ?>
+
             <span>&#8594;</span>
         </div>
     </div>

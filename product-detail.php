@@ -36,18 +36,18 @@
                 </div>
             </form>
             <nav>
-                <ul id="MenuItems"><b>
+                <ul id="MenuItems">
+                    <b>
+                        <li><a href="index.php">Home</a></li>
                         <li><a href="productsman.php">Nam</a></li>
                         <li><a href="productswoman.php">Nữ</a></li>
-                        <li><a href="">Dịch vụ</a></li>
-                        <li><a href="">Liên hệ</a></li>
                         <?php
                         if(isset($_SESSION['UserName']) && isset($_SESSION['Name'])) {
                             ?>
                                 <li>
                                     <div>
-                                        <div>Xin chào <?php echo $_SESSION['Name']?></div>
-                                        <a style="color: red;" href="logout.php">Đăng xuất</a>
+                                        Xin chào <?php echo $_SESSION['Name']?>
+                                        <div><a style="color: red;" href="logout.php">Đăng xuất</a></div>
                                     </div>
                                 </li>
                             <?php
@@ -57,8 +57,9 @@
                                 <li><a href="account.php">Tài khoản</a></li>
                             <?php
                         }
-                    ?>
-                </ul></b>
+                        ?>
+                    </b>
+                </ul>
             </nav>
             <a href="cart.php"><img src="Images/cart.png" width="30px" height="30px">
                 <img src="Images/menu.png" class="menu-icon" onclick="menutoggle()">
@@ -103,7 +104,7 @@
                 <option>Xám</option>
             </select>
             <input type='number' value='1' min='1' name='quantityItemName'>
-            <a href='#' class='btn' onclick='AddtoCart(this)' itemid='$row[0]'>Thêm vào giỏ</a>
+            <a href='cart.php' class='btn' onclick='AddtoCart(this)' itemid='$row[0]'>Thêm vào giỏ</a>
             <h3>Chi tiết sản phẩm <i class='fa fa-indent'></i></h3>
             <br>
             <p>$row[3]</p>
@@ -111,6 +112,7 @@
     </div>
             ";
         }; 
+        mysqli_close($conn);
     ?>
         </div>
         <!--------testimonial---------->
