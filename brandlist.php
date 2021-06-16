@@ -5,11 +5,11 @@
 <html>
 
 <head>
-    <meta charset='utf-8'>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>All Products - WS25</title>
+    <title>Branch Lish - WS25</title>
     <link rel="shortcut icon" type="image/png" href="Images/icon.png">
-    <link rel="stylesheet" href='style.css'>
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet"
         href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -74,7 +74,7 @@
     <div class="small-container">
         <div class="row row-2">
             <h2>Tất cả sản phẩm của nhà sản xuất
-                <?php
+        <?php
             $mnsx = $_GET["nsx"];
             include ("db_connect.php");
             $sql = "SELECT Name FROM manufacturer WHERE $mnsx = IDManufacturer ";
@@ -84,7 +84,7 @@
                 echo "$row[0]: ";
             };
             mysqli_close($conn);
-                ?>
+        ?>
             </h2>
             <select>
                 <option>Sắp xếp mặc định</option>

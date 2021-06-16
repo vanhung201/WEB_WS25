@@ -46,4 +46,7 @@
     else {
         header("Location: account.php");
     }
+
+    mysqli_close($conn);
+    
 ?>
