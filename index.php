@@ -124,16 +124,14 @@
         <div class="row">
         <?php 
             include ("db_connect.php");
-           
-            $sql = "SELECT * FROM product WHERE PurchaseDate >= ('2021-06-01')";
-            ")
+            $sql = "SELECT * FROM product, detail_order WHERE product.IDProduct = detail_order.IDProduct 
+            GROUP BY detail_order.IDProduct HAVING Count(detail_order.IDProduct) >= 3";
             $kq = mysqli_query($conn,$sql);
-
             while($row = mysqli_fetch_row($kq)){
                 echo "
                 <div class='col-4'>
-                <a href='product-detailnew.php?IDProduct=$row[0]'><img src='Images/$row[7]'></a>
-                <a href='product-detailnew.php?IDProduct=$row[0]'><h4>$row[1]</h4></a>
+                <a href='product-detail.php?IDProduct=$row[0]'><img src='Images/$row[7]'></a>
+                <a href='product-detail.php?IDProduct=$row[0]'><h4>$row[1]</h4></a>
                 <div class='ratting'>
                     <i class='fa fa-star'></i>
                     <i class='fa fa-star'></i>
