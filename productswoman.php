@@ -151,7 +151,7 @@
             $sotrang = ceil($sodulieu/$sosanpham);
 
             if(!isset($_GET["page"]))
-                $page = 8;
+                $page = 1;
             else
                 $page = $_GET["page"];
 
