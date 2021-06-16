@@ -1,14 +1,15 @@
 <?php
     session_start();
+
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
+    <meta charset='utf-8'>
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>WS25 | WATCH STORE 25</title>
     <link rel="shortcut icon" type="image/png" href="Images/icon.png">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href='style.css'>
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css" >
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -90,18 +91,22 @@
 
 <!------ featured products ------>
 <div class="small-container">
-    <h2 class="title">Đồng hồ nam bán chạy</h2>
+    <h2 class="title"><img src='images/iconnew.png' width=30px> Đồng Hồ Mới <img src='images/iconnew.png' width=30px></h2>
     <div class="row">
     <?php
             include ("db_connect.php");
-            $sql = "SELECT IDProduct, Name, IDTypeProduct, Detail, Inventory, Amount, IDManufacturer, Img FROM product WHERE IDTypeProduct = 0";
-            $kq = mysqli_query($conn, $sql);
+            
+            $sql = "SELECT * FROM product WHERE PurchaseDate >= ('2021-06-01') LIMIT 10";
+            
+            $kq = mysqli_query($conn,$sql);
 
             while($row = mysqli_fetch_row($kq)){
+
+                $amount = number_format($row[5],0,",",".");
                 echo "
                 <div class='col-4'>
-                <a href='product-detail.php?IDProduct=$row[0]'><img src='Images/$row[7]' alt='$row[7]'></a>
-                <a href='product-detail.php?IDProduct=$row[0]'><h4>$row[1]</h4></a>
+                <a href='product-detailnew.php?IDProduct=$row[0]'><img src='Images/$row[7]'></a>
+                <a href='product-detailnew.php?IDProduct=$row[0]'><h4>$row[1]</h4></a>
                 <div class='ratting'>
                     <i class='fa fa-star'></i>
                     <i class='fa fa-star'></i>
@@ -109,7 +114,7 @@
                     <i class='fa fa-star'></i>
                     <i class='fa fa-star-o'></i>
                 </div>
-                <p><h3>$row[5] VNĐ</h3></p>
+                <p><h3>$amount VNĐ</h3></p>
             </div>
                 ";
             };
@@ -118,18 +123,20 @@
     </div>
 
     <div class="small-container">
-    <h2 class="title">Đồng hồ nữ bán chạy</h2>
+    <h2 class="title">Đồng Hồ Bán Chạy</h2>
         <div class="row">
-    <?php
+        <?php 
             include ("db_connect.php");
-            $sql = "SELECT IDProduct, Name, IDTypeProduct, Detail, Inventory, Amount, IDManufacturer, Img FROM product WHERE IDTypeProduct = 1";
+           
+            $sql = "SELECT * FROM product, detail_order WHERE product.IDProduct = detail_order.IDProduct GROUP BY detail_order.IDProduct HAVING Count(detail_order.IDProduct) >= 5 LIMIT 10";
+            
             $kq = mysqli_query($conn,$sql);
 
             while($row = mysqli_fetch_row($kq)){
                 echo "
                 <div class='col-4'>
-                <a href='product-detail.php'><img src='Images/$row[7]' alt='$row[7]'></a>
-                <a href='product-detail.php'><h4>$row[1]</h4></a>
+                <a href='product-detail.php?IDProduct=$row[0]'><img src='Images/$row[7]'></a>
+                <a href='product-detail.php?IDProduct=$row[0]'><h4>$row[1]</h4></a>
                 <div class='ratting'>
                     <i class='fa fa-star'></i>
                     <i class='fa fa-star'></i>

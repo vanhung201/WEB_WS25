@@ -7,7 +7,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>Product Detail - WS25</title>
+    <title>Product Detail New - WS25</title>
     <link rel="shortcut icon" type="image/png" href="Images/icon.png">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet"
@@ -94,11 +94,18 @@
 
             echo "
             <div class='col-2'>
+            <img src='images/iconnew.png' width=70px>
                 <img src='Images/$row[7]' width='100%' id='ProductImg'>
             </div>
         <div class='col-2'>
             <h1>$row[1]</h1>
             <h4>$amount VNĐ</h4>
+            <select>
+                <option>Chọn màu</option>
+                <option>Đen</option>
+                <option>Bạc</option>
+                <option>Xám</option>
+            </select>
             <input type='number' value='1' min='1' name='quantityItemName'>
             <a href='#' class='btn' onclick='AddtoCart(this)' itemid='$row[0]'>Thêm vào giỏ</a>
             <h3>Chi tiết sản phẩm <i class='fa fa-indent'></i></h3>
@@ -108,9 +115,6 @@
     </div>
             ";
         }; 
-
-        mysqli_close($conn);
-
     ?>
         </div>
         <!--------testimonial---------->
@@ -365,7 +369,7 @@ Q. Bình Thạnh, TP. HCM
                             $('#message').replaceWith(success);
 
                             if(data.cannotbuying) {
-                                alert('Bạn chỉ có thể mua tối đa ' + soluong + ' sản phẩm.')
+                                alert('Ban chỉ có thể mua tối đa ' + soluong + ' sản phẩm.')
                             }
                             
                             $('#lblCartCount').text(data.cartCount);
@@ -384,7 +388,7 @@ Q. Bình Thạnh, TP. HCM
                 });
             }
             else {
-                alert("Sản phẩm này đang tạm thời hết hàng xin hãy quay lại sau.")
+                alert("Sản phẩm này đã hết hàng xin hãy quay lại sau.")
             }
         })
     }
