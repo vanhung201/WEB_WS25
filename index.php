@@ -1,5 +1,6 @@
 <?php
     session_start();
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -90,18 +91,19 @@
 
 <!------ featured products ------>
 <div class="small-container">
-    <h2 class="title">Đồng hồ nam bán chạy</h2>
+    <h2 class="title"><img src='images/iconnew.png' width=30px>Đồng Hồ Mới<img src='images/iconnew.png' width=30px></h2>
     <div class="row">
     <?php
             include ("db_connect.php");
-            $sql = "SELECT IDProduct, Name, IDTypeProduct, Detail, Inventory, Amount, IDManufacturer, Img FROM product WHERE IDTypeProduct = 0";
-            $kq = mysqli_query($conn, $sql);
+            
+            $sql = "SELECT * FROM product WHERE PurchaseDate >= ('2021-06-01')";
+            $kq = mysqli_query($conn,$sql);
 
             while($row = mysqli_fetch_row($kq)){
                 echo "
                 <div class='col-4'>
-                <a href='product-detail.php?IDProduct=$row[0]'><img src='Images/$row[7]' alt='$row[7]'></a>
-                <a href='product-detail.php?IDProduct=$row[0]'><h4>$row[1]</h4></a>
+                <a href='product-detailnew.php?IDProduct=$row[0]'><img src='Images/$row[7]'></a>
+                <a href='product-detailnew.php?IDProduct=$row[0]'><h4>$row[1]</h4></a>
                 <div class='ratting'>
                     <i class='fa fa-star'></i>
                     <i class='fa fa-star'></i>
@@ -118,18 +120,19 @@
     </div>
 
     <div class="small-container">
-    <h2 class="title">Đồng hồ nữ bán chạy</h2>
+    <h2 class="title">Đồng Hồ Bán Chạy</h2>
         <div class="row">
-    <?php
+        <?php 
             include ("db_connect.php");
-            $sql = "SELECT IDProduct, Name, IDTypeProduct, Detail, Inventory, Amount, IDManufacturer, Img FROM product WHERE IDTypeProduct = 1";
+            
+            $sql = "SELECT * FROM product WHERE PurchaseDate >= ('2021-06-01')";
             $kq = mysqli_query($conn,$sql);
 
             while($row = mysqli_fetch_row($kq)){
                 echo "
                 <div class='col-4'>
-                <a href='product-detail.php'><img src='Images/$row[7]' alt='$row[7]'></a>
-                <a href='product-detail.php'><h4>$row[1]</h4></a>
+                <a href='product-detailnew.php?IDProduct=$row[0]'><img src='Images/$row[7]'></a>
+                <a href='product-detailnew.php?IDProduct=$row[0]'><h4>$row[1]</h4></a>
                 <div class='ratting'>
                     <i class='fa fa-star'></i>
                     <i class='fa fa-star'></i>
