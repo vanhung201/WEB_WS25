@@ -4,11 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset='utf-8'>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>All Products - WS25</title>
+    <title>Cart - WS25</title>
     <link rel="shortcut icon" type="image/png" href="Images/icon.png">
-    <link rel="stylesheet" href='style.css'>
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet"
         href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -28,7 +28,8 @@
                 <input type="search" placeholder="Tìm kiếm"/>
             </div>
             <nav>
-                <ul id="MenuItems"><b>
+            <b>
+                <ul id="MenuItems">
                     <li><a href="productsman.php">Nam</a></li>
                     <li><a href="productswoman.php">Nữ</a></li>
                     <li><a href="">Dịch vụ</a></li>
@@ -50,7 +51,8 @@
                             <?php
                         }
                     ?>
-                </ul></b>
+                </ul>
+            </b>
             </nav>
             <a href="cart.php"><img src="Images/cart.png" width="30px" height="30px">
                 <img src="Images/menu.png" alt="menu.png" class="menu-icon" onclick="menutoggle()">

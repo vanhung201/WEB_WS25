@@ -5,12 +5,12 @@
 <html>
 
 <head>
-    <meta charset='utf-8'>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>All Products - WS25</title>
+    <title>Account - WS25</title>
     <link rel="shortcut icon" type="image/png" href="Images/icon.png">
-    <link rel="stylesheet" href='style.css'>
-    <link rel="stylesheet" href='loginStyle.css'>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="loginStyle.css">
     <link rel="stylesheet"
         href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -100,7 +100,7 @@
                             <input name="UserName" type="text" placeholder="Tên đăng nhập">
                             <input name="PassWord" type="password" placeholder="Mật khẩu">
                             <input name="Email" type="email" placeholder="Email">
-                            <input name="Name" type="text" placeholder="Tên người dùng">
+                            <input name="Name" type="text" placeholder="Họ và Tên">
                             <input name="Gender" type="text" placeholder="Giới tính">
                             <input name="PhoneNumber" type="text" placeholder="Số điện thoại">
                             <input name="DateOfBirth" type="date" placeholder="Ngày sinh">
