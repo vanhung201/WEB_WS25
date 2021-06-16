@@ -131,7 +131,7 @@
             $sql = "SELECT * FROM product, detail_order WHERE product.IDProduct = detail_order.IDProduct GROUP BY detail_order.IDProduct HAVING Count(detail_order.IDProduct) >= 5 LIMIT 10";
             
             $kq = mysqli_query($conn,$sql);
-
+          
             while($row = mysqli_fetch_row($kq)){
                 echo "
                 <div class='col-4'>
