@@ -102,8 +102,8 @@
             while($row = mysqli_fetch_row($kq)){
                 echo "
                 <div class='col-4'>
-                <a href='product-detailnew.php?IDProduct=$row[0]'><img src='Images/$row[7]'></a>
-                <a href='product-detailnew.php?IDProduct=$row[0]'><h4>$row[1]</h4></a>
+                <a href='product-detail.php?IDProduct=$row[0]'><img src='Images/$row[7]'></a>
+                <a href='product-detail.php?IDProduct=$row[0]'><h4>$row[1]</h4></a>
                 <div class='ratting'>
                     <i class='fa fa-star'></i>
                     <i class='fa fa-star'></i>
