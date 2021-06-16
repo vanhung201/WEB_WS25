@@ -92,8 +92,14 @@
                     <tbody id='tbody'>
             <?php
             while($row = mysqli_fetch_row($kq)){
+
+                $amount = number_format($row[5],0,",",".");
+
                 $TongTien = $row[5] * $row[4];
                 $ThanhTien += $TongTien;
+
+                $TongTienFormat = number_format($TongTien,0,",",".");
+                $ThanhTienFormat = number_format($ThanhTien,0,",",".");
                 echo "
                     <tr id='$row[1]'>
                         <td style='width: 700px;'>
@@ -101,14 +107,14 @@
                                 <img src='Images/$row[6]'>
                                 <div>
                                     <p>$row[3]</p>
-                                    <small id='UnitPrice'>Giá : $row[5] VND</small>
+                                    <small id='UnitPrice'>Giá: $amount VND</small>
                                     <br>
                                     <a href='#' onclick='RemoveItem(this)' itemid='$row[1]'>Xóa</a>
                                 </div>
                             </div>
                             </td>
                         <td><input style='width: 50px;' type='number' value='$row[4]' min='1' name='quantityItemName' itemid='$row[1]' data-content='$row[5]'></td>
-                        <td itemid='$row[1]'>$TongTien VND</td>
+                        <td itemid='$row[1]'>$TongTienFormat VND</td>
                     </tr>";
             };
             mysqli_close($conn);
@@ -129,7 +135,7 @@
                     <table>
                         <tr>
                             <td>Tổng tiền</td>
-                            <td id='ThanhTien'><?php echo $ThanhTien ?> VND</td>
+                            <td id='ThanhTien'><?php echo $ThanhTienFormat ?> VND</td>
                         </tr>
                         <tr>
                             <td>Thuế VAT</td>
@@ -137,7 +143,7 @@
                         </tr>
                         <tr>
                             <td>Thành tiền</td>
-                            <td id='ThanhTien_Thue'><?php echo ($ThanhTien + $ThanhTien*0.05) ?> VND</td>
+                            <td id='ThanhTien_Thue'><?php echo number_format($ThanhTien + $ThanhTien*0.05,0,",",".") ?> VND</td>
                         </tr>
                     </table>
                 </div>

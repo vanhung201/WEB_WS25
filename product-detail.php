@@ -89,19 +89,16 @@
         $kq = mysqli_query($conn,$sql);
 
         while($row = mysqli_fetch_row($kq)){
+
+            $amount = number_format($row[5],0,",",".");
+
             echo "
             <div class='col-2'>
                 <img src='Images/$row[7]' width='100%' id='ProductImg'>
             </div>
         <div class='col-2'>
             <h1>$row[1]</h1>
-            <h4>$row[5] VNĐ</h4>
-            <select>
-                <option>Chọn màu</option>
-                <option>Đen</option>
-                <option>Bạc</option>
-                <option>Xám</option>
-            </select>
+            <h4>$amount VNĐ</h4>
             <input type='number' value='1' min='1' name='quantityItemName'>
             <a href='#' class='btn' onclick='AddtoCart(this)' itemid='$row[0]'>Thêm vào giỏ</a>
             <h3>Chi tiết sản phẩm <i class='fa fa-indent'></i></h3>

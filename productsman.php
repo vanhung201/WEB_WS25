@@ -161,6 +161,9 @@
             $result = mysqli_query($conn,$command);
 
             while($row = mysqli_fetch_row($result)){
+
+                $amount = number_format($row[5],0,",",".");
+
                 echo "
                 <div class='col-4'>
                 <a href='product-detail.php?IDProduct=$row[0]'><img src='Images/$row[7]'></a>
@@ -172,7 +175,7 @@
                     <i class='fa fa-star'></i>
                     <i class='fa fa-star-o'></i>
                 </div>
-                <p><h3>$row[5] VNĐ</h3></p>
+                <p><h3>$amount VNĐ</h3></p>
             </div>
                 ";
             };

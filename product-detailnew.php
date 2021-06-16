@@ -89,6 +89,9 @@
         $kq = mysqli_query($conn,$sql);
 
         while($row = mysqli_fetch_row($kq)){
+
+            $amount = number_format($row[5],0,",",".");
+
             echo "
             <div class='col-2'>
             <img src='images/iconnew.png' width=70px>
@@ -96,7 +99,7 @@
             </div>
         <div class='col-2'>
             <h1>$row[1]</h1>
-            <h4>$row[5] VNĐ</h4>
+            <h4>$amount VNĐ</h4>
             <select>
                 <option>Chọn màu</option>
                 <option>Đen</option>
