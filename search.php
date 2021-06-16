@@ -5,11 +5,11 @@
 <html>
 
 <head>
-    <meta charset='utf-8'>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>All Products - WS25</title>
+    <title>Search Products - WS25</title>
     <link rel="shortcut icon" type="image/png" href="Images/icon.png">
-    <link rel="stylesheet" href='style.css'>
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet"
         href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -22,7 +22,7 @@
             <div class="logo">
                 <a href="index.php"><img src="Images/logo.png" width="125px"></a>
             </div>
-            <form action='search.php' method='get'>
+            <form action="search.php" method="get">
                 <div class="search-wrapper">
                     <input style="margin: 0px 0px 0px 0px;" type="text" name="keyword" placeholder="Tìm kiếm" />
                     <button style="border:none; background-color:rgba(0, 0, 0, 0)" name="submit">
@@ -82,6 +82,7 @@
             <?php
 
             $keyword = $_GET["keyword"];
+
             include ("db_connect.php");
             $sql = "SELECT * FROM product WHERE Name like '%$keyword%'";
             $kq = mysqli_query($conn,$sql);
@@ -109,12 +110,16 @@
                     </select>";
                 }
             }
+
+            mysqli_close($conn);
+
             ?>
         </div>
 
         <div class="row">
         <?php
             $keyword = $_GET["keyword"];
+            
             include ("db_connect.php");
             $sql = "SELECT * FROM product WHERE Name like '%$keyword%'";
             $kq = mysqli_query($conn,$sql);

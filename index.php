@@ -124,8 +124,12 @@
         <div class="row">
         <?php 
             include ("db_connect.php");
+
             $sql = "SELECT * FROM product, detail_order WHERE product.IDProduct = detail_order.IDProduct 
             GROUP BY detail_order.IDProduct HAVING Count(detail_order.IDProduct) >= 3";
+  
+            $sql = "SELECT * FROM product WHERE PurchaseDate >= ('2021-06-01')";
+            
             $kq = mysqli_query($conn,$sql);
             while($row = mysqli_fetch_row($kq)){
                 echo "

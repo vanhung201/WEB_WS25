@@ -2,6 +2,7 @@
     session_start();
 
     include "db_connect.php";
+    
     if(isset($_POST['UserName']) 
     && isset($_POST['PassWord']) 
     && isset($_POST['Email'])
@@ -98,4 +99,7 @@
             } 
         }
     }
+
+    mysqli_close($conn);
+
 ?>
