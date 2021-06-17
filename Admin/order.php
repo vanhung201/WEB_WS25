@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-sacle=1, maximun-scale=1">
-    <title>WS25 Admin</title>
+    <title>Order - WS25</title>
     <link rel="shortcut icon" type="image/png" href="Images/icon.png">
     <link rel = "stylesheet" href = "https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css" >
     <link rel="stylesheet" href="style.css">
@@ -55,18 +55,14 @@
                 <input type="search" placeholder="Search here"/>
             </div>
             <div class="user-wrapper">
-                <img src="Images/2.jpg"  width="30px" height="30px" alt="">
-                <div>
-                    <h4>Dương Đẹp Zai</h4>
-                    <small>Super Admin</small>
-                </div>
+                <img src="Images/user.png" width="30px" height="30px" alt="user.png">
             </div>
         </header>
         <main>
     <div>
         <div class="card-single">
             <div>
-                <span>Đơn Hàng</span>
+                <h2>Đơn Hàng</h2>
             </div>
             <div>
                 <span class="las la-shopping-bag"></span>
@@ -99,6 +95,9 @@
                             </tr>
                             ";
                         };
+
+                        mysqli_close($conn);
+                        
                         ?>
                     </tbody>
                 </table>

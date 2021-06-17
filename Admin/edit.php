@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-sacle=1, maximun-scale=1">
-    <title>WS25 Admin</title>
+    <title>Edit Products - WS25</title>
     <link rel="shortcut icon" type="image/png" href="img/icon.png">
     <link rel = "stylesheet" href = "https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css" >
     <link rel="stylesheet" href="style.css">
@@ -30,12 +30,12 @@
                 </li>
 
                 <li>
-                    <a href="customer.html"><span class="las la-users"></span>
+                    <a href="customer.php"><span class="las la-users"></span>
                     <span>Khách Hàng</span></a>
                 </li>
         
                 <li>
-                    <a href="order.html"><span class="las la-shopping-bag"></span>
+                    <a href="order.php"><span class="las la-shopping-bag"></span>
                     <span>Đơn Hàng</span></a>
                 </li>
             </ul>
@@ -55,11 +55,7 @@
                 <input type="search" placeholder="Search here"/>
             </div>
             <div class="user-wrapper">
-                <img src="Images/2.jpg"  width="30px" height="30px" alt="">
-                <div>
-                    <h4>Dương Đẹp Zai</h4>
-                    <small>Super Admin</small>
-                </div>
+                <img src="Images/user.png" width="30px" height="30px" alt="user.png">
             </div>
         </header>
         <main>
@@ -68,6 +64,8 @@
             $id=$_GET['IDProduct'];
             $kq=mysqli_query($conn, "SELECT * from product where IDProduct =$id ");
             $row=mysqli_fetch_assoc($kq);
+
+            mysqli_close($conn);
         ?>
 <h1 style="margin-bottom: 15px">Cập nhật sản phẩm</h1>
             <div class="fixtablesp">
@@ -94,7 +92,10 @@
         $command1 = "update product set Name='$name', Amount='$amount', Img='$img', Detail='$detail' where IDProduct='$id'";
         
         mysqli_query($conn,$command1) or die("Cập nhật không thành công !");
-		header("Location: product.php");exit();
+		header("Location: product.php");
+        exit();
+        
+        mysqli_close($conn);
     }
 	
 ?>
