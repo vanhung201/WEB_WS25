@@ -44,4 +44,6 @@
         header("Location: account.php?error");
         exit();
     }
+
+    mysqli_close($conn);
 ?>

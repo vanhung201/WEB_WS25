@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-sacle=1, maximun-scale=1">
-    <title>WS25 Admin</title>
+    <title>Home Admin - WS25</title>
     <link rel="shortcut icon" type="image/png" href="Images/icon.png">
     <link rel = "stylesheet" href = "https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css" >
     <link rel="stylesheet" href="style.css">
@@ -16,7 +16,7 @@
         <div class="sidebar">
             <div class="sidebar-brand">
                 <div class="logo">
-                    <a href="index.php"><img src="Images/logo.png" width="130px" alt="Logo"></a>
+                    <a href="index.php"><img src="Images/logo.png" width="130px" alt="logo.png"></a>
                 </div>
                 
             </div>
@@ -58,7 +58,7 @@
                 <input type="search" placeholder="Search here"/>
             </div>
             <div class="user-wrapper">
-                <img src="Images/2.jpg"  width="30px" height="30px" alt="">
+                <img src="Images/user.png" width="30px" height="30px" alt="user.png">
                 <div>
                     <?php
                         if(isset($_SESSION['UserName'])) {
@@ -87,8 +87,7 @@
                 <div>
                     <div class="card-single">
                         <div>
-                            <h1>79</h1>
-                            <span>Sản Phẩm</span>
+                            <h2>Sản Phẩm</h2>
                         </div>
                         <div>
                             <span class="las la-clipboard-list"></span>
@@ -100,6 +99,7 @@
                             <table class="color-table-if" width="100%">
                             <thead>
                                 <tr>
+                                    <td></td>
                                     <td>Mã Sản Phẩm </td>
                                     <td>Tên Sản Phẩm</td>
                                     <td>Số Lượng</td>
@@ -109,11 +109,12 @@
                             <tbody>
                             <?php
                             include("db_connect.php");
-                            $kq = mysqli_query($conn,"SELECT * FROM product ");
+                            $kq = mysqli_query($conn,"SELECT * FROM product ORDER BY PurchaseDate DESC LIMIT 10");
                                  while($row = mysqli_fetch_row($kq)){
                                      echo "
                                     <tr>
-                                        <td class='imgsp'><img src='Images/$row[7]' width='100%' id='ProductImg'></td>
+                                        <td class='imgsp'><img src='../Images/$row[7]' width='100%' id='ProductImg'></td>
+                                        <td>$row[0]</td>
                                         <td>$row[1]</td>
                                         <td>$row[4]</td>
                                         <td>$row[5]VNĐ</td>
@@ -122,12 +123,15 @@
                                     </tr>
                                     ";
                                  };
+
+                                 mysqli_close($conn);
+
                                 ?>
                             </tbody>
                         </table>
                         </div>
                         <br>
-                                            <a href="product.php" class="detail">Xem tất cả!!</a>
+                            <a href="product.php" class="detail">Xem tất cả!!</a>
                                         
                     </div>
                 </div>
@@ -135,8 +139,7 @@
                 <div>
                     <div class="card-single">
                         <div>
-                            <h1>54</h1>
-                            <span>Khách Hàng</span>
+                            <h2>Khách Hàng</h2>
                         </div>
                         <div>
                             <span class="las la-users"></span>
@@ -157,7 +160,7 @@
                             <tbody>
                                  <?php
                     include("db_connect.php");
-                        $kq=mysqli_query($conn,"SELECT * FROM customer");
+                        $kq=mysqli_query($conn,"SELECT * FROM customer LIMIT 10");
                         while($row=mysqli_fetch_row($kq)){
                             echo "
                                 <tr>
@@ -169,12 +172,15 @@
                                 </tr>
                             ";
                         };
+
+                        mysqli_close($conn);
+
                         ?>
                             </tbody>
                         </table>
                         </div>
                         <br>
-                                            <a href="customer.php" class="detail">Xem tất cả!!</a>
+                            <a href="customer.php" class="detail">Xem tất cả!!</a>
                                         
                     </div>
                 </div>
@@ -182,8 +188,7 @@
                 <div>
                     <div class="card-single">
                         <div>
-                            <h1>124</h1>
-                            <span>Đơn Hàng</span>
+                            <h2>Đơn Hàng</h2>
                         </div>
                         <div>
                             <span class="las la-shopping-bag"></span>
@@ -204,7 +209,7 @@
                             <tbody>
                             <?php
                         include("db_connect.php");
-                        $kq=mysqli_query($conn,"SELECT * FROM order_product");
+                        $kq=mysqli_query($conn,"SELECT * FROM order_product ORDER BY StartDate DESC LIMIT 10");
                         while($row = mysqli_fetch_row($kq)){
                             echo"
                             <tr>
@@ -216,23 +221,21 @@
                             </tr>
                             ";
                         };
+
+                        mysqli_close($conn);
+                        
                         ?>
                             </tbody>
                         </table>
                         
                         </div>
                         <br>
-                                            <a href="order.php" class="detail">Xem tất cả!!</a>
+                            <a href="order.php" class="detail">Xem tất cả!!</a>
                                         
                     </div>
                 </div>
-
             </div>
-
-            
-
         </main>
     </div>
-
 </body>
 </html>

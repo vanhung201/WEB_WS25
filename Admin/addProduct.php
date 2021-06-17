@@ -7,8 +7,8 @@
     $img = $_POST['Img'];
     $detail = $_POST['Detail'];
     
-    $sql = "INSERT INTO product (Name, Amount, Inventory, Img, Detail)
-                    VALUES ('$name', '$amount', '$inventory','$img', '$detail')";
+       $sql = "INSERT INTO product (Name, Amount, Inventory, Img, Detail)
+                    VALUES ('$name', '$amount', '$inventory','$image_url', '$detail')";
     $result = mysqli_query($conn, $sql);
 
     if($result) {
@@ -18,5 +18,8 @@
     else {
         header("Location: add.php?error=Thêm sản phẩm thất bại");
         exit();
+    
     }
+    
+    mysqli_close($conn);
 ?>

@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-sacle=1, maximun-scale=1">
-    <title>WS25 Admin</title>
-    <link rel="shortcut icon" type="image/png" href="img/icon.png">
+    <title>Add Product - WS25</title>
+    <link rel="shortcut icon" type="image/png" href="Images/icon.png">
     <link rel = "stylesheet" href = "https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css" >
     <link rel="stylesheet" href="style.css">
 </head>
@@ -13,7 +13,7 @@
         <div class="sidebar">
             <div class="sidebar-brand">
                 <div class="logo">
-                    <a href="index.php"><img src="Images/logo.png" width="130px" alt=""></a>
+                    <a href="index.php"><img src="Images/logo.png" width="130px" alt="logo.png"></a>
                 </div>
                 
             </div>
@@ -30,12 +30,12 @@
                 </li>
 
                 <li>
-                    <a href="customer.html"><span class="las la-users"></span>
+                    <a href="customer.php"><span class="las la-users"></span>
                     <span>Khách Hàng</span></a>
                 </li>
         
                 <li>
-                    <a href="order.html"><span class="las la-shopping-bag"></span>
+                    <a href="order.php"><span class="las la-shopping-bag"></span>
                     <span>Đơn Hàng</span></a>
                 </li>
             </ul>
@@ -55,26 +55,27 @@
                 <input type="search" placeholder="Search here"/>
             </div>
             <div class="user-wrapper">
-                <img src="Images/2.jpg"  width="30px" height="30px" alt="">
-                <div>
-                    <h4>Dương Đẹp Zai</h4>
-                    <small>Super Admin</small>
-                </div>
+                <img src="Images/user.png"  width="30px" height="30px" alt="user.png">
             </div>
         </header>
         <main>
-        <h1 style="margin-bottom: 15px"> Thêm sản phẩm</h1>
+        <h1 style="margin-bottom: 15px">Thêm sản phẩm</h1>
         <div class="fixtablesp">
                 
-                <form id="addProduct" action="addProduct.php" method="POST">
-                <input class="form-control" name="Name" type="text" placeholder="Tên sản phẩm" style="width: 500px; margin-bottom: 10px; ">
-                <input class="form-control" name="Amount" type="number" placeholder="Giá" style="width: 500px; margin-bottom: 10px; ">
-                <input class="form-control" name="Inventory" type="number" placeholder="Số lượng" style="width: 500px; margin-bottom: 10px;">
-                <input class="form-control" name="Img" type="text" placeholder="Hình ảnh" style="width: 500px; margin-bottom: 10px;">
-                <input class="form-control" name="Detail" type="text" placeholder="Chi tiết sản phẩm" style="width: 500px; margin-bottom: 10px;"><br>
+            <form id="addProduct" action="addProduct.php" method="POST" enctype="multipart/form-data">
+                Tên sản phẩm: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="form-control" name="Name" type="text" placeholder="Nhập vào tên sản phẩm" style="width: 500px; margin-bottom: 30px; ">
+                <br>
+                Giá:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="form-control" name="Amount" type="number" placeholder="Nhập vào giá" style="width: 500px; margin-bottom: 30px; ">
+                <br>
+                Số lượng: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="form-control" name="Inventory" type="number" min="1" placeholder="Nhập vào số lượng" style="width: 500px; margin-bottom: 30px;">
+                <br>
+                Hình ảnh: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="form-control" name="Img" type="text" placeholder="Hình ảnh" style="width: 500px; margin-bottom: 30px;">
+                <br>
+                Chi tiết sản phẩm &nbsp;&nbsp;&nbsp;<input class="form-control" name="Detail" type="text" placeholder="Nhập thông tin chi tiết" style="width: 500px; margin-bottom: 30px;">
+                <br>
                 <button type="submit" class="detail" align="center" style="margin-bottom: 20px;">Thêm sản phẩm</button>
                 <a class="detail" href="product.php">Trở về</a>
-        </form> 
+            </form> 
         
                
             </div>

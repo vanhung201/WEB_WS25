@@ -3,7 +3,7 @@
 <head>
     <meta charset='utf-8'>
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>All Products - WS25</title>
+    <title>Account Admin - WS25</title>
     <link rel="shortcut icon" type="image/png" href="Images/icon.png">
     <link rel="stylesheet" href='css/account.css'>
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css" >
