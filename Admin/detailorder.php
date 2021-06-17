@@ -3,94 +3,87 @@
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <title>Details Order</title>
-    <link href="detailorder.css" rel="stylesheet">
+    <link href="detailorderstyle.css" rel="stylesheet">
     <link href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' rel='stylesheet'>
     <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
-
     <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
     <script type='text/javascript' src='https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js'></script>
     <script type='text/javascript'></script>
 </head>
+<?php
+    include("db_connect.php");
+    $id=$_GET['IDOrderProduct'];
+    $sql=("SELECT * FROM detail_order d 
+    INNER JOIN order_product op ON op.IDOrderProduct=d.IDOrderProduct 
+    INNER JOIN product p ON d.IDProduct=p.IDProduct where op.IDOrderProduct=$id");
+    $kq=mysqli_query($conn,$sql);
+    $ro=mysqli_fetch_assoc($kq);
+    $thanhtien =0;
 
+?>
 <body oncontextmenu='return false' class='snippet-body'>
 <div class="d-flex flex-column justify-content-center align-items-center" id="order-heading">
     <div class="text-uppercase">
-        <p>Order detail</p>
+        <p>Chi Tiết Đơn Hàng</p>
     </div>
-    <div class="h4">Thursday, July 24, 2017</div>
+    <div class="h4"></div>
     <div class="pt-1">
-        <p>Order #12615 is currently<b class="text-dark"> processing</b></p>
+        <p>Đơn hàng <?php echo $id ?> đang ở trạng thái<b class="text-dark"> <?php echo $ro['Status']?> </b></p>
     </div>
     <div class="btn close text-white"> &times; </div>
 </div>
 <div class="wrapper bg-white">
-    <div class="table-responsive">
+    
         <table class="table table-borderless">
             <thead>
                 <tr class="text-uppercase text-muted">
-                    <th scope="col">product</th>
-                    <th scope="col" class="text-right">total</th>
+                    <th scope="col" colspan="2">Sản Phẩm</th>
+                    <th></th>
+                    <th scope="col" class="text-right" >Giá</th>
+                    
                 </tr>
             </thead>
             <tbody>
+            <?php
+     
+        while ($row=mysqli_fetch_assoc($kq)){
+            $tong = $row['Amount'] * $row['TotalProduct'];
+            $thanhtien += $tong;
+        echo "
                 <tr>
-                    <th scope="row"></th>
-                    <td class="text-right"><b>$69.86</b></td>
+                <td><div class='d-flex justify-content-start align-items-center list py-1'></td>
+                <td><div class=''> <input type='number' value='$row[TotalProduct]' style='width: 30px'></div></td>
+                <td><div class='order-item' style='margin-left: 20px'>$row[Name]</div></td>
+                    <td class='text-right'><b>$row[Amount] VNĐ</b></td>
                 </tr>
+                ";
+        }
+        
+                ?>
             </tbody>
         </table>
+    <div class='pt-2 border-bottom mb-3'></div>
+    <div class='d-flex justify-content-start align-items-center py-1 pl-3'>
+        <div class='text-muted'>Phí giao hàng</div>
+        <div class='ml-auto'> <label>Miễn phí</label> </div>
+        
     </div>
-    <div class="d-flex justify-content-start align-items-center list py-1">
-        <div><b>1px</b></div>
-        <div class="mx-3"> <img src="https://images.pexels.com/photos/206959/pexels-photo-206959.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="apple" class="rounded-circle" width="30" height="30"> </div>
-        <div class="order-item">Apple</div>
+    <div class='d-flex justify-content-start align-items-center py-1 pl-3'>
+        <div class='text-muted'>Thành Tiền</div>
+        <div class='ml-auto'> <label class='text-right'><?php echo $thanhtien ?> VNĐ</label> </div>
+        
     </div>
-    <div class="d-flex justify-content-start align-items-center list my-2 py-1">
-        <div><b>4px</b></div>
-        <div class="mx-3"> <img src="https://images.unsplash.com/photo-1602081593819-65e7a8cee0dd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" alt="apple" class="rounded-circle" width="30" height="30"> </div>
-        <div class="order-item">Mango</div>
-    </div>
-    <div class="d-flex justify-content-start align-items-center list my-2 py-1">
-        <div><b>2px</b></div>
-        <div class="mx-3"> <img src="https://images.unsplash.com/photo-1584183187885-071d53d42531?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="apple" class="rounded-circle" width="30" height="30"> </div>
-        <div class="order-item">Carrot Apple Ginger</div>
-    </div>
-    <div class="d-flex justify-content-start align-items-center list my-2 py-1">
-        <div><b>3px</b></div>
-        <div class="mx-3"> <img src="https://images.unsplash.com/photo-1602096934878-5028bf10ca50?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="apple" class="rounded-circle" width="30" height="30"> </div>
-        <div class="order-item">Pear</div>
-    </div>
-    <div class="pt-2 border-bottom mb-3"></div>
-    <div class="d-flex justify-content-start align-items-center py-1 pl-3">
-        <div class="text-muted">Shipping</div>
-        <div class="ml-auto"> <label>Free</label> </div>
-    </div>
-    <div class="d-flex justify-content-start align-items-center pb-4 pl-3 border-bottom">
-        <div class="text-muted"> <button class="text-white btn">50% Discount</button> </div>
-        <div class="ml-auto price"> -$34.94 </div>
-    </div>
-    <div class="d-flex justify-content-start align-items-center pl-3 py-3 mb-4 border-bottom">
-        <div class="ml-auto h5"> $34.94 </div>
-    </div>
-    <div class="row border rounded p-1 my-3">
-        <div class="col-md-6 py-3">
-            <div class="d-flex flex-column align-items start"> <b>Billing Address</b>
-                <p class="text-justify pt-2">James Thompson, 356 Jonathon Apt.220,</p>
-                <p class="text-justify">New York</p>
-            </div>
-        </div>
-        <div class="col-md-6 py-3">
-            <div class="d-flex flex-column align-items start"> <b>Shipping Address</b>
-                <p class="text-justify pt-2">James Thompson, 356 Jonathon Apt.220,</p>
-                <p class="text-justify">New York</p>
+    <div class='row border rounded p-1 my-3'>
+        <div class='col-md-6 py-3'>
+            <div class='d-flex flex-column align-items start'> <b>Địa Chỉ Giao Hàng</b>
+                <p class='text-justify pt-2'><?php echo $ro['Address'] ?></p>
             </div>
         </div>
     </div>
-    <div class="pl-3 font-weight-bold">Related Subsriptions</div>
-    <div class="d-sm-flex justify-content-between rounded my-3 subscriptions">
-        <div>May 22, 2017</div>
-        <div>Status: Processing</div>
-        <div> Total: <b> $68.8 for 10 items</b> </div>
+    <div class='pl-3 font-weight-bold'>Trạng Thái Đơn Hàng</div>
+    <div class='d-sm-flex justify-content-between rounded my-3 subscriptions'>
+        <div><?php echo $ro['StartDate'] ?></div>
+        <div>Trạng Thái: <?php echo $ro['Status'] ?></div>
     </div>
 </div>
 </body>
