@@ -1,18 +1,24 @@
 <?php
-    session_start();
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-sacle=1, maximun-scale=1">
-    <title>Home Admin - WS25</title>
+    <title>WS25 Admin</title>
     <link rel="shortcut icon" type="image/png" href="Images/icon.png">
     <link rel = "stylesheet" href = "https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css" >
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/account.css">
 </head>
 <body>
-        <input type="checkbox" id="nav-toggle">
+<?php
+if(isset($_SESSION['UserName'])) {
+    ?>
+    <div>
+    <input type="checkbox" id="nav-toggle">
         <div class="sidebar">
             <div class="sidebar-brand">
                 <div class="logo">
@@ -60,28 +66,14 @@
             <div class="user-wrapper">
                 <img src="Images/user.png" width="30px" height="30px" alt="user.png">
                 <div>
-                    <?php
-                        if(isset($_SESSION['UserName'])) {
-                            ?>
-                                <div>
-                                    <div>Xin chào <?php echo $_SESSION['UserName']?></div>
-                                    <a style="color: red;" href="logout.php">Đăng xuất</a>
-                                </div>
-                            <?php
-                        }
-                        else {
-                            ?>
-                                <a href="account.php">Tài khoản Admin</a>
-                            <?php
-                        }
-                    ?>
+                        <div>
+                            <div>Xin chào <?php echo $_SESSION['UserName']?></div>
+                            <a style="color: red;" href="logout.php">Đăng xuất</a>
+                        </div>
                 </div>
             </div>
         </header>
         <main>
-
-            
-
             <div class="cards">
 
                 <div>
@@ -237,5 +229,15 @@
             </div>
         </main>
     </div>
+    </div>
+    <?php
+}
+else {
+    ?>
+    <div class="adminMessage">Bạn cần đăng nhập bằng <a class="accountAdmin" href="account.php"><b>TÀI KHOẢN ADMIN</b></a> để tiếp tục</div>
+    <div class="adminMessage"><a class="accountAdmin" href="../index.php"><b>Nhấn vào đây</b></a> để trở về trang chủ</div>
+    <?php
+}
+?>
 </body>
 </html>
